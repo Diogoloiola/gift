@@ -8,59 +8,127 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Olá, mundo!</title>
+    <title>Ferramenta Git</title>
   </head>
   <body>
-    <div class="container" id="formulario">
-      <form method="post">
+   <header>
+     <nav class="navbar navbar-expand-lg" style="background-color: #24292E;">
+        <a class="navbar-brand" style="color: white;" href="#">Ferramenta Git</a>
+        <span style="color: #fff; font-size: 2em;">
+          <i class="fab fa-github"></i>
+        </span>
+      </nav>
+   </header>
+
+   <section class="container-fluid">
+    <article id="fomrulario">
+       <form>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label>Nome do repositorio</label>
-            <input class="form-control" type="text" name="nomeRepo">
+            <label for="nomeRepositorio">Nome Repositório</label>
+            <input type="email" class="form-control" id="nomeRepositorio" placeholder="Nome Repositório">
           </div>
           <div class="form-group col-md-6">
-            <label>Nome do usuário</label>
-            <input class="form-control" type="text" name="nomeUsu">
+            <label for="nomeUsuario">Nome de Usuário</label>
+            <input type="password" class="form-control" id="nomeUsuario" placeholder="Nome Usuario">
           </div>
         </div>
         <div class="form-group">
-           <label>Linguagem</label>
-          <input class="form-control" type="text" name="linguagem">
+          <label for="linguagem">Linguagem do Repositório</label>
+          <input type="text" class="form-control" id="linguagem" placeholder="linguagem">
+        </div>
+        <div class="form-group">
+          <label for="forks">Quantidade de forks do Repositorio</label>
+          <input type="text" class="form-control" id="forks" placeholder="Quantidade de forks">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">Tamaho</label>
+            <input type="text" class="form-control" id="inputCity" placeholder="Tamanho em kilobytes">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="Licença">Licença</label>
+            <select id="Licença" class="form-control">
+              <option value="none">none</option>
+              <option value="Apache License 2.0">Apache License 2.0</option>
+              <option value="GNU General Public License v3.0">GNU General Public License v3.0</option>
+              <option value="MIT License">MIT License</option>
+              <option value="BSD 2-Clause 'Simplified' License">BSD 2-Clause "Simplified" License</option>
+              <option value="BSD 3-Clause 'New' or 'Revised' License">BSD 3-Clause "New" or "Revised" License</option>
+              <option value="Eclipse Public License 2.0">Eclipse Public License 2.0</option>
+              <option value="GNU Affero General Public License v3.0">GNU Affero General Public License v3.0</option>
+              <option value="GNU General Public License v2.0">GNU General Public License v2.0</option>
+              <option value="GNU Lesser General Public License v2.1">GNU Lesser General Public License v2.1</option>
+              <option value="GNU Lesser General Public License v3.0">GNU Lesser General Public License v3.0</option>
+              <option value="Mozilla Public License 2.0">Mozilla Public License 2.0</option>
+              <option value="The Unlicense">The Unlicense</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="Estrelas">Estrelas do Repositório</label>
+            <input type="text" class="form-control" id="Estrelas">
+          </div>
+        </div>
+         <div class="form-row">
+          <div class="form-group col-md-8">
+            <label for="topicosRepositorio">Tópicos</label>
+            <input type="email" class="form-control" id="topicosRepositorio" placeholder="Topicos do Repositorio">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="nomeUsuario">Ultima atualização</label>
+           <input class="form-control" type="text" name="input1" placeholder="YYYY-MM-DD" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="organização">Nome da organização</label>
+          <input class="form-control" type="text" id="organização">
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label>Numero de forks</label>
-            <input class="form-control" type="text" name="numFork">
+            <label for="seguidores">Quantidade de seguidores</label>
+            <input type="email" class="form-control" id="seguidores">
           </div>
           <div class="form-group col-md-4">
-            <label>Numero de estrelas</label>
-            <input class="form-control" type="text" name="numEst">
+            <label for="tipo-repositorio">Tipo de repositório</label>
+            <select id="tipo-repositorio" class="form-control">
+              <option value="Public">Public</option>
+              <option value="Private">Private</option>
+            </select>
           </div>
-           <div class="form-group col-md-4">
-            <label>Tamanho do repositorio</label>
-            <input class="form-control" type="text" name="tamRepo">
+          <div class="form-group col-md-4">
+            <label>Quantidade de Iusses</label>
+            <input class="form-control" type="text" name="" id="iuses">
           </div>
         </div>
-        <button id="pesquisar" type="submit" class="btn btn-primary">Enviar</button>
+        <div class="form-group">
+          <label for="quant-repositorios">Quantidade de repositorios</label>
+          <input type="text" class="form-control" id="quant-repositorios">
+        </div>
+        <button type="submit" class="btn btn-primary" id="pesquisar">Pesquisar</button>
       </form>
-    </div>
-
-
-    <div class="container" id="tabela">
-      <table class="table table-striped">
+    </article>
+    <article>
+      <div id="overlay">
+        <div id="text">
+          Pesquisando
+        </div>
+      </div>
+    </article>
+    <article class="table-responsive">
+      <table class="table table-striped text-center" id="tabela" style="display: none;">
         <thead>
           <tr>
             <th scope="col">Nome Repositório</th>
             <th scope="col">Criado</th>
-            <th scope="col">Link para baixar</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Download</th>
           </tr>
         </thead>
-        <tbody id="conteudo-tabela">
-          
-        </tbody>
+        <tbody id="conteudo-tabela"></tbody>
+       <button class="btn btn-primary" id="voltar" style="display: none;">Voltar</button>
       </table>
-      <button id="pesquisarNovamente">Pesquisar Novamente</button>
-    </div>
+    </article>
+   </section>
 
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
@@ -68,5 +136,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/all.min.js"></script>
   </body>
 </html>
