@@ -21,25 +21,25 @@ $(document).ready(()=>{
 		let string = '';
 		for (let i = 0; i < campos.length; i++) {
 			if (i == 0 && campos[i].value != '') {
-				string += `${campos[i].value} in:name+`;
+				string += `${campos[i].value} in:name `;
 			}else if(i == 1 && campos[i].value != ''){
-				string += `user:${campos[i].value}+`;
+				string += `user:${campos[i].value} `;
 			}else if(i == 2 && campos[i].value != ''){
-				string += `language:${campos[i].value}+`;
+				string += `language:${campos[i].value} `;
 			}else if(i == 3 && campos[i].value != ''){
-				string += `forks:${campos[i].value}+`;
+				string += `forks:${campos[i].value} `;
 			}else if(i == 4 && campos[i].value != ''){
 				string += `size:>${form[i].value}`;
 			}else if(i == 5 && campos[i].value != ''){
-				string += `stars:>${campos[i].value}+`;
+				string += `stars:>${campos[i].value} `;
 			}else if(i == 6 && campos[i].value != ''){
-				string += `topic:${campos[i].value}+`;
+				string += `topic:${campos[i].value} `;
 			}else if(i == 7 && campos[i].value != ''){
-				string += `pushed:${campos[i].value}+`;
+				string += `pushed:${campos[i].value} `;
 			}else if(i == 8 && campos[i].value){
-				string += `org: ${campos[i].value}+`;
+				string += `org: ${campos[i].value} `;
 			}else if(i == 9 && campos[i].value){
-				string += `followers:${campos[i].value}+`;
+				string += `followers:${campos[i].value} `;
 			}else if(i == 10 && campos[i].value){
 				string += `good-first-issues:>${campos[i].value}`;
 			}
