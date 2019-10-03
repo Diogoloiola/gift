@@ -5,9 +5,13 @@ $(document).ready(()=>{
 		e.preventDefault();
 		let inputs = document.querySelectorAll('input');
 		let complementoQuery = bindQuery(inputs);
-		let quantRepositorios = inputs[11].value == '' ? 100 : inputs[11].value;
-		let query = `https://api.github.com/search/repositories?q=${complementoQuery}&sort=stars&order=desc&page=1&per_page=${quantRepositorios}`;
-		fechtAll(query);	
+		if (complementoQuery == '') {
+			$('#modal').modal('show');
+		}else{
+			let quantRepositorios = inputs[11].value == '' ? 100 : inputs[11].value;
+			let query = `https://api.github.com/search/repositories?q=${complementoQuery}&sort=stars&order=desc&page=1&per_page=${quantRepositorios}`;
+			fechtAll(query);
+		}
 	});
 
 	$('#voltar').click(e=>{
