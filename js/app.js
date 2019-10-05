@@ -7,6 +7,7 @@ $(document).ready(()=>{
 		let complementoQuery = bindQuery(inputs);
 		if (complementoQuery == '') {
 			$('#modal').modal('show');
+			$('#conteudo-modal').html('Forneça pelo menos algum dado');
 		}else{
 			let quantRepositorios = inputs[11].value == '' ? 100 : inputs[11].value;
 			let query = `https://api.github.com/search/repositories?q=${complementoQuery}&sort=stars&order=desc&page=1&per_page=${quantRepositorios}`;
