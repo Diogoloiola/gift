@@ -74,7 +74,7 @@ $(document).ready(()=>{
 		         $('#conteudo-tabela').append(valores);
 	            })
 	        },
-        	complete: function(){
+        	complete: function(result){
         		if(result.responseJSON.total_count == 0){
         			$('#overlay').hide();
         			$('#modal').modal('show');
