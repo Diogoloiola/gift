@@ -75,9 +75,16 @@ $(document).ready(()=>{
 	            })
 	        },
         	complete: function(){
-        		$('#overlay').hide();
-        		$('#tabela').show();
-        		$('#voltar').show();
+        		if(result.responseJSON.total_count == 0){
+        			$('#overlay').hide();
+        			$('#modal').modal('show');
+        			$('#conteudo-modal').html('Nenhum dado foi encontrado com esses parâmetros');
+        			$('#fomrulario').fadeIn(500);
+        		}else{
+        			$('#overlay').hide();
+        			$('#tabela').show();
+        			$('#voltar').show();
+        		}
         	}
     	 });
 	}
