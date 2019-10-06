@@ -4,12 +4,12 @@ $(document).ready(()=>{
 	$('#pesquisar').click(e =>{
 		e.preventDefault();
 		let inputs = document.querySelectorAll('input');
-		let complementoQuery = bindQuery(inputs);
+		let complementoQuery = bindQuery(inputs, document.querySelectorAll('select'));
 		if (complementoQuery == '') {
 			$('#modal').modal('show');
-			$('#conteudo-modal').html('Forneça pelo menos algum dado');
+			$('#conteudo-modal').html('Por favor informe pelos menos um parâmetro, para a consulta ser feita');
 		}else{
-			let quantRepositorios = inputs[11].value == '' ? 100 : inputs[11].value;
+			let quantRepositorios = inputs[10].value == '' ? 100 : inputs[10].value;
 			let query = `https://api.github.com/search/repositories?q=${complementoQuery}&sort=stars&order=desc&page=1&per_page=${quantRepositorios}`;
 			fechtAll(query);
 		}
@@ -22,8 +22,9 @@ $(document).ready(()=>{
 		$('#voltar').hide();
 	});
 
-	function bindQuery(campos){
+	function bindQuery(campos, select){
 		let string = '';
+		
 		for (let i = 0; i < campos.length; i++) {
 			if (i == 0 && campos[i].value != '') {
 				string += `${campos[i].value} in:name `;
@@ -36,24 +37,32 @@ $(document).ready(()=>{
 			}else if(i == 4 && campos[i].value != ''){
 				string += `size:>${form[i].value}`;
 			}else if(i == 5 && campos[i].value != ''){
-				string += `stars:>${campos[i].value} `;
+				string += `stars:>=${campos[i].value} `;
 			}else if(i == 6 && campos[i].value != ''){
 				string += `topic:${campos[i].value} `;
-			}else if(i == 7 && campos[i].value != ''){
-				string += `pushed:${campos[i].value} `;
-			}else if(i == 8 && campos[i].value){
+			}else if(i == 7 && campos[i].value){
 				string += `org: ${campos[i].value} `;
-			}else if(i == 9 && campos[i].value){
+			}else if(i == 8 && campos[i].value){
 				string += `followers:${campos[i].value} `;
-			}else if(i == 10 && campos[i].value){
+			}else if(i == 9 && campos[i].value){
 				string += `good-first-issues:>${campos[i].value}`;
 			}
+		}
+		
+		if (select[0].value != '') {
+			string += `license:${select[0].value}`
+		}else if(select[1].value != ''){
+			let ano = new Date().getFullYear() - parseInt(select[1].value);
+			string += `created:>${ano}-01-01`;
+		}else if(select[2].value != ''){
+			string += `fork:${select[2].value}`
 		}
 		return string;
 	}
 
 
 	function fechtAll(query){
+		console.log(query);
 		 $.ajax(
 		 {
 			url: query,
@@ -62,7 +71,6 @@ $(document).ready(()=>{
 				$('#overlay').show();
 			},
 			success: function(result){
-				console.log(result)
 	        	result.items.forEach(valor =>{
            		let valores = `
 		         	<tr>
@@ -89,4 +97,5 @@ $(document).ready(()=>{
         	}
     	 });
 	}
+
 })

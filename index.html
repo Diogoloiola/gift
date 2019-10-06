@@ -12,8 +12,8 @@
   </head>
   <body>
    <header>
-     <nav class="navbar navbar-expand-lg justify-content-space-between" style="background-color: #24292E;">
-        <a class="navbar-brand" style="color: white;" href="#">Ferramenta Git</a>
+     <nav class="navbar navbar-expand-lg" style="background-color: #24292E;">
+        <a class="navbar-brand" style="color: white;" href="index.html">Ferramenta Git</a>
         <span style="color: #fff; font-size: 2em;">
           <i class="fab fa-github"></i>
         </span>
@@ -49,19 +49,39 @@
           <div class="form-group col-md-4">
             <label for="Licença">Licença</label>
             <select id="Licença" class="form-control">
-              <option value="none">none</option>
-              <option value="Apache License 2.0">Apache License 2.0</option>
-              <option value="GNU General Public License v3.0">GNU General Public License v3.0</option>
-              <option value="MIT License">MIT License</option>
-              <option value="BSD 2-Clause 'Simplified' License">BSD 2-Clause "Simplified" License</option>
-              <option value="BSD 3-Clause 'New' or 'Revised' License">BSD 3-Clause "New" or "Revised" License</option>
-              <option value="Eclipse Public License 2.0">Eclipse Public License 2.0</option>
-              <option value="GNU Affero General Public License v3.0">GNU Affero General Public License v3.0</option>
-              <option value="GNU General Public License v2.0">GNU General Public License v2.0</option>
-              <option value="GNU Lesser General Public License v2.1">GNU Lesser General Public License v2.1</option>
-              <option value="GNU Lesser General Public License v3.0">GNU Lesser General Public License v3.0</option>
-              <option value="Mozilla Public License 2.0">Mozilla Public License 2.0</option>
-              <option value="The Unlicense">The Unlicense</option>
+              <option value="">-</option>
+              <option value="apache-2.0">Apache License 2.0</option>
+              <option value="artistic-2.0">Artistic license 2.0</option>
+              <option value="bsl-1.0">Boost Software License 1.0</option>
+              <option value="bsd-2-clause">BSD 2-clause "Simplified" license</option>
+              <option value="bsd-3-clause">BSD 3-clause "New" or "Revised" license</option>
+              <option value="bsd-3-clause-clear">BSD 3-clause Clear license</option>
+              <option value="cc">Creative Commons license family</option>
+              <option value="cc0-1.0">Creative Commons Zero v1.0 Universal</option>
+              <option value="cc-by-4.0">Creative Commons Attribution 4.0</option>
+              <option value="cc-by-sa-4.0">Creative Commons Attribution Share Alike 4.0</option>
+              <option value="wtfpl">Do What The F*ck You Want To Public License</option>
+              <option value="ecl-2.0">Educational Community License v2.0</option>
+              <option value="epl-1.0">Eclipse Public License 1.0</option>
+              <option value="eupl-1.1">European Union Public License 1.1</option>
+              <option value="agpl-3.0">GNU Affero General Public License v3.0</option>
+              <option value="gpl">GNU General Public License family</option>
+              <option value="gpl-2.0">GNU General Public License v2.0</option>
+              <option value="gpl-3.0">GNU General Public License v3.0</option>
+              <option value="lgpl">GNU Lesser General Public License family</option>
+              <option value="lgpl-2.1">GNU Lesser General Public License v2.1</option>
+              <option value="lgpl-3.0">GNU Lesser General Public License v3.0</option>
+              <option value="isc">ISC</option>
+              <option value="lppl-1.3c">LaTeX Project Public License v1.3c</option>
+              <option value="ms-pl">Microsoft Public License</option>
+              <option value="mit">MIT</option>
+              <option value="mpl-2.0">Mozilla Public License 2.0</option>
+              <option value="osl-3.0">Open Software License 3.0</option>
+              <option value="postgresql">PostgreSQL License</option>
+              <option value="ofl-1.1">SIL Open Font License 1.1</option>
+              <option value="ncsa">University of Illinois/NCSA Open Source License</option>
+              <option value="unlicense">The Unlicense</option>
+              <option value="zlib">zLib License</option>
             </select>
           </div>
           <div class="form-group col-md-2">
@@ -75,8 +95,21 @@
             <input type="email" class="form-control" id="topicosRepositorio" placeholder="Topicos do Repositorio">
           </div>
           <div class="form-group col-md-4">
-            <label for="nomeUsuario">Ultima atualização</label>
-           <input class="form-control" type="text" name="input1" placeholder="YYYY-MM-DD" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+            <label for="nomeUsuario">Tempo de repositório</label>
+            <select id="idade-repositorio" class="form-control">
+              <option value="">-</option>
+              <option value="1">1 ano</option>
+               <option value="2">2 anos</option>
+               <option value="3">3 anos</option>
+               <option value="4">4 anos</option>
+               <option value="5">5 anos</option>
+               <option value="6">6 anos</option>
+               <option value="7">7 anos</option>
+               <option value="8">8 anos</option>
+               <option value="9">9 anos</option>
+               <option value="10">10 anos</option>
+               <option value="11">11 anos</option>
+            </select>
           </div>
         </div>
         <div class="form-group">
@@ -89,10 +122,11 @@
             <input type="email" class="form-control" id="seguidores">
           </div>
           <div class="form-group col-md-4">
-            <label for="tipo-repositorio">Tipo de repositório</label>
+            <label for="tipo-repositorio">Permitir Com Forks</label>
             <select id="tipo-repositorio" class="form-control">
-              <option value="Public">Public</option>
-              <option value="Private">Private</option>
+              <option value="">-</option>
+              <option value="True">Sim</option>
+              <option value="False">Não</option>
             </select>
           </div>
           <div class="form-group col-md-4">
@@ -148,6 +182,7 @@
           </div>
         </div>
     </article>
+
    </section>
 
     <!-- JavaScript (Opcional) -->
