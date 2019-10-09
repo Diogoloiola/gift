@@ -8,7 +8,7 @@ $(document).ready(()=>{
 		that.dataQuerys = 
 		[
 			' in:name', 'user:', 'language:', 'forks:','size:>=','license:','stars:>=', 'topic:', 
-				'','org:', 'followers:>','fork:',
+				'created:>','org:', 'followers:>','fork:',
 			  'good-first-issues:>','&page=1&per_page=' 
 		];
 		that.dataRepository = '';
@@ -16,7 +16,17 @@ $(document).ready(()=>{
 			let string = '?q=';
 			let i = 0;
 			that.fields.forEach(field=>{
-				if(field.value !== '') string += that.dataQuerys[i] + `${field.value} `;
+				if(field.value !== ''){
+					if(i === 0){
+						string += field.value + that.dataQuerys[i];
+					}
+					else if(i === 8){
+						let ano = new Date().getFullYear() - parseInt(field.value);
+						string += that.dataQuerys[i] + `${ano}01-01`;
+					}else{
+						string += that.dataQuerys[i] + `${field.value} `;
+					}
+				}
 				i++;
 			});
 			that.complementQuery = string;
