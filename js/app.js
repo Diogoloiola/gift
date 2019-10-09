@@ -1,77 +1,53 @@
 $(document).ready(()=>{
 
-
-	$('#pesquisar').click(e =>{
-		e.preventDefault();
-		let inputs = document.querySelectorAll('input');
-		let complementoQuery = bindQuery(inputs, document.querySelectorAll('select'));
-		if (complementoQuery == '') {
-			$('#modal').modal('show');
-			$('#conteudo-modal').html('Por favor informe pelos menos um parâmetro, para a consulta ser feita');
-		}else{
-			let quantRepositorios = inputs[10].value == '' ? 100 : inputs[10].value;
-			let query = `https://api.github.com/search/repositories?q=${complementoQuery}&sort=stars&order=desc&page=1&per_page=${quantRepositorios}`;
-			fechtAll(query);
+	function BD(){
+		let that = this;
+		that.fields = document.querySelectorAll('.form-control');
+		that.linkApi = 'https://api.github.com/search/repositories';
+		that.complementQuery = '';
+		that.dataQuerys = 
+		[
+			' in:name', 'user:', 'language:', 'forks:','size:>=','license:','stars:>=', 'topic:', 
+				'','org:', 'followers:>','fork:',
+			  'good-first-issues:>','&page=1&per_page=' 
+		];
+		that.dataRepository = '';
+		that.bindQuery = function(){
+			let string = '?q=';
+			let i = 0;
+			that.fields.forEach(field=>{
+				if(field.value !== '') string += that.dataQuerys[i] + `${field.value} `;
+				i++;
+			});
+			that.complementQuery = string;
+		};
+		that.fetchAll = function(e){
+			e.preventDefault();
+			that.bindQuery();
+			 $.ajax(
+			 {
+				url: that.linkApi + that.complementQuery,
+				beforeSend: function(){
+					ferramenta.beforeSend();
+				},
+				success: function(result){
+		        	ferramenta.listDate(result);
+		        },
+	        	complete: function(result){
+	        		ferramenta.afterShipping(result);
+	        	}
+	    	 });
 		}
-	});
-
-	$('#voltar').click(e=>{
-		$('#tabela').hide();
-		$('#conteudo-tabela').html('');
-		$('#fomrulario').fadeIn(500);
-		$('#voltar').hide();
-	});
-
-	function bindQuery(campos, select){
-		let string = '';
-		
-		for (let i = 0; i < campos.length; i++) {
-			if (i == 0 && campos[i].value != '') {
-				string += `${campos[i].value} in:name `;
-			}else if(i == 1 && campos[i].value != ''){
-				string += `user:${campos[i].value} `;
-			}else if(i == 2 && campos[i].value != ''){
-				string += `language:${campos[i].value} `;
-			}else if(i == 3 && campos[i].value != ''){
-				string += `forks:${campos[i].value} `;
-			}else if(i == 4 && campos[i].value != ''){
-				string += `size:>${form[i].value}`;
-			}else if(i == 5 && campos[i].value != ''){
-				string += `stars:>=${campos[i].value} `;
-			}else if(i == 6 && campos[i].value != ''){
-				string += `topic:${campos[i].value} `;
-			}else if(i == 7 && campos[i].value){
-				string += `org: ${campos[i].value} `;
-			}else if(i == 8 && campos[i].value){
-				string += `followers:${campos[i].value} `;
-			}else if(i == 9 && campos[i].value){
-				string += `good-first-issues:>${campos[i].value}`;
-			}
-		}
-		
-		if (select[0].value != '') {
-			string += `license:${select[0].value}`
-		}else if(select[1].value != ''){
-			let ano = new Date().getFullYear() - parseInt(select[1].value);
-			string += `created:>${ano}-01-01`;
-		}else if(select[2].value != ''){
-			string += `fork:${select[2].value}`
-		}
-		return string;
 	}
 
-
-	function fechtAll(query){
-		console.log(query);
-		 $.ajax(
-		 {
-			url: query,
-			beforeSend: function(){
-				$('#fomrulario').fadeOut(500);
-				$('#overlay').show();
-			},
-			success: function(result){
-	        	result.items.forEach(valor =>{
+	function Ferramenta(){
+		let that = this;
+		that.load = function(){
+			document.querySelector('#pesquisar').onclick = banco.fetchAll;
+			document.querySelector('#voltar').onclick = ferramenta.backToForm;
+		}
+		that.listDate = function(data){
+			data.items.forEach(valor =>{
            		let valores = `
 		         	<tr>
 		         		<td>${valor.full_name}</td>
@@ -82,20 +58,35 @@ $(document).ready(()=>{
 		         `;
 		         $('#conteudo-tabela').append(valores);
 	            })
-	        },
-        	complete: function(result){
-        		if(result.responseJSON.total_count == 0){
-        			$('#overlay').hide();
-        			$('#modal').modal('show');
-        			$('#conteudo-modal').html('Nenhum dado foi encontrado com esses parâmetros');
-        			$('#fomrulario').fadeIn(500);
-        		}else{
-        			$('#overlay').hide();
-        			$('#tabela').show();
-        			$('#voltar').show();
-        		}
-        	}
-    	 });
-	}
+		}
+		that.setDataModal = function(msg){
+			$('#modal').modal('show');
+			$('#conteudo-modal').html(msg);
+		}
+		that.afterShipping = function(data){
+			if (data.responseJSON.total_count == 0) {
+				that.setDataModal('Nenhum dado foi encontrado com esses parâmetros');
+				$('#fomrulario').fadeIn(500);
+				$('#overlay').hide();
+			}else{
+				$('#overlay').hide();
+        		$('#tabela').show();
+        		$('#voltar').show();
+			}
+		}
+		that.backToForm = function(){
+			$('#tabela').hide();
+			$('#conteudo-tabela').html('');
+			$('#fomrulario').fadeIn(500);
+			$('#voltar').hide();
+		}
+		that.beforeSend = function(){
+			$('#fomrulario').fadeOut(500);
+			$('#overlay').show();
+		}
+	}	
 
+	let banco = new BD();
+	let ferramenta = new Ferramenta();
+	ferramenta.load();
 })
