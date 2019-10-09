@@ -7,7 +7,7 @@ $(document).ready(()=>{
 		that.complementQuery = '';
 		that.dataQuerys = 
 		[
-			' in:name', 'user:', 'language:', 'forks:','size:>=','license:','stars:>=', 'topic:', 
+			' in:name', 'user:', 'language:', 'forks:>','size:>=','license:','stars:>=', 'topic:', 
 				'created:>','org:', 'followers:>','fork:',
 			  'good-first-issues:>','&page=1&per_page=' 
 		];
@@ -22,7 +22,7 @@ $(document).ready(()=>{
 					}
 					else if(i === 8){
 						let ano = new Date().getFullYear() - parseInt(field.value);
-						string += that.dataQuerys[i] + `${ano}01-01`;
+						string += that.dataQuerys[i] + `${ano}-01-01`;
 					}else{
 						string += that.dataQuerys[i] + `${field.value} `;
 					}
