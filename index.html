@@ -1,54 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <!-- Meta tags Obrigatórias -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <!-- Meta tags Obrigatórias -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Ferramenta Git</title>
-  </head>
-  <body>
-   <header>
-     <nav class="navbar navbar-expand-lg" style="background-color: #24292E;">
-        <a class="navbar-brand" style="color: white;" href="index.html">Ferramenta Git</a>
-        <span style="color: #fff; font-size: 2em;">
-          <i class="fab fa-github"></i>
-        </span>
-      </nav>
-   </header>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>Ferramenta</title>
+</head>
+<body>
 
-   <section class="container-fluid">
-    <article id="fomrulario">
-       <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="nomeRepositorio">Nome Repositório</label>
-            <input type="email" class="form-control" id="nomeRepositorio" placeholder="Nome Repositório">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="nomeUsuario">Nome de Usuário</label>
-            <input type="text" class="form-control" id="nomeUsuario" placeholder="Nome Usuario">
-          </div>
+  <header>
+    <nav class="navbar navbar-expand-lg" style="background-color: #24292E;">
+      <a class="navbar-brand" style="color: white;" href="index.html">Ferramenta Git</a>
+      <span style="color: #fff; font-size: 2em;">
+        <i class="fab fa-github"></i>
+      </span>
+    </nav>
+  </header>
+
+
+  <section class="container-fluid">
+    <article  id="formulario">
+      <form>
+        <div class="form-group">
+          <label for="lg-repositorio">Linguagem do Repositório</label>
+          <input type="text" class="form-control" id="lg-repositorio" required="">
         </div>
         <div class="form-group">
-          <label for="linguagem">Linguagem do Repositório</label>
-          <input type="text" class="form-control" id="linguagem" placeholder="linguagem">
-        </div>
-        <div class="form-group">
-          <label for="forks">Quantidade de forks do Repositorio</label>
-          <input type="text" class="form-control" id="forks" placeholder="Quantidade de forks">
+          <label for="quant-repositorios">Quantidade de forks do repositorio</label>
+          <input class="form-control" type="text" id="quant-repositorios">
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputCity">Tamaho</label>
-            <input type="text" class="form-control" id="inputCity" placeholder="Tamanho em kilobytes">
+            <label for="tam-repositorio">Tamanho do Repositorio</label>
+            <input class="form-control" type="text" id="tam-repositorio">
           </div>
           <div class="form-group col-md-4">
-            <label for="Licença">Licença</label>
-            <select id="Licença" class="form-control">
+            <label for="licenca-repositorio">Licença</label>
+            <select id="licenca-repositorio" class="form-control">
               <option value="">-</option>
               <option value="apache-2.0">Apache License 2.0</option>
               <option value="artistic-2.0">Artistic license 2.0</option>
@@ -85,60 +77,46 @@
             </select>
           </div>
           <div class="form-group col-md-2">
-            <label for="Estrelas">Estrelas do Repositório</label>
-            <input type="text" class="form-control" id="Estrelas">
+            <label for="estrela-repositorio">Estrela do repostiorio</label>
+            <input class="form-control" type="text" id="estrela-repositorio">
           </div>
-        </div>
-         <div class="form-row">
-          <div class="form-group col-md-8">
-            <label for="topicosRepositorio">Tópicos</label>
-            <input type="email" class="form-control" id="topicosRepositorio" placeholder="Topicos do Repositorio">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="nomeUsuario">Tempo de repositório</label>
-            <select id="idade-repositorio" class="form-control">
-              <option value="">-</option>
-              <option value="1">1 ano</option>
-               <option value="2">2 anos</option>
-               <option value="3">3 anos</option>
-               <option value="4">4 anos</option>
-               <option value="5">5 anos</option>
-               <option value="6">6 anos</option>
-               <option value="7">7 anos</option>
-               <option value="8">8 anos</option>
-               <option value="9">9 anos</option>
-               <option value="10">10 anos</option>
-               <option value="11">11 anos</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="organização">Nome da organização</label>
-          <input class="form-control" type="text" id="organização">
         </div>
         <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="seguidores">Quantidade de seguidores</label>
-            <input type="email" class="form-control" id="seguidores">
+          <div class="form-group col-md-8">
+            <label for="topico-repositorio">Topicos</label>
+            <input class="form-control" type="text" id="topico-repositorio">
           </div>
           <div class="form-group col-md-4">
-            <label for="tipo-repositorio">Permitir Com Forks</label>
-            <select id="tipo-repositorio" class="form-control">
+            <label for="tempo-repositorio">Tempo de repositório</label>
+            <select id="tempo-repositorio" class="form-control">
               <option value="">-</option>
-              <option value="True">Sim</option>
-              <option value="False">Não</option>
+              <option value="1">1 ano</option>
+              <option value="2">2 anos</option>
+              <option value="3">3 anos</option>
+              <option value="4">4 anos</option>
+              <option value="5">5 anos</option>
+              <option value="6">6 anos</option>
+              <option value="7">7 anos</option>
+              <option value="8">8 anos</option>
+              <option value="9">9 anos</option>
+              <option value="10">10 anos</option>
+              <option value="11">11 anos</option>
             </select>
           </div>
-          <div class="form-group col-md-4">
-            <label>Quantidade de Iusses</label>
-            <input class="form-control" type="text" name="" id="iuses">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-8">
+            <label for="quantidade-repositorios">Quantidade de repositórios que serão retornados</label>
+            <input class="form-control" type="text" id="quantidade-repositorios">
+          </div>
+          <div class="form col-md-4">
+            <label for="quantidade-iusses">Quantidade de Iusses</label>
+            <input class="form-control" type="text" id="quantidade-iusses">
           </div>
         </div>
-        <div class="form-group">
-          <label for="quant-repositorios">Quantidade de repositorios</label>
-          <input type="text" class="form-control" id="quant-repositorios">
+        <div>
+          <button class="btn btn-outline-primary" id="pesquisar-repositorio">Pesquisar</button>
         </div>
-        <button type="submit" class="btn btn-primary" id="pesquisar">Pesquisar</button>
       </form>
     </article>
     <article>
@@ -148,49 +126,53 @@
         </div>
       </div>
     </article>
-    <article class="container table-responsive bg-white">
-      <table class="table table-striped text-center table-bordered mt-3" id="tabela" style="display: none;">
+    <article class="container bg-white p-0 tabela-responsive" id="tabela">
+      <table class="table table-striped table-bordered text-center">
         <thead>
           <tr>
-            <th scope="col">Nome Repositório</th>
+            <th scope="col">Nome repositório</th>
             <th scope="col">Criado</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Download</th>
+            <th scope="col">Baixar</th>
+            <th scope="col">Link para clone</th>
           </tr>
         </thead>
-        <tbody id="conteudo-tabela"></tbody>
-       <button class="btn btn-primary" id="voltar" style="display: none;">Voltar</button>
+        <tbody id="conteudo-tabela">
+
+        </tbody>
       </table>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="voltar">Voltar</button>
+        <button class="btn btn-primary" id="baixar-selecionado">Baixar</button>
+        <button class="btn btn-primary" id="baixar-tudo">Baixar tudo</button>
+      </div>
     </article>
-    <article>
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p id="conteudo-modal"></p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-              </div>
-            </div>
-          </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="meu-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </article>
+        <div class="modal-body" id="conteudo-modal">
 
-   </section>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- JavaScript (Opcional) -->
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/all.min.js"></script>
-  </body>
+  <!-- JavaScript (Opcional) -->
+  <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="js/app.js" type="module"></script>
+</body>
 </html>
