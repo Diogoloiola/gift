@@ -26,18 +26,25 @@ const Ferramenta = {
 			</tr>
 			`;
 			$('#conteudo-tabela').append(valores);
-		})
+		});
+		$('#container-tabela').DataTable({
+			"paging":   false,
+			"ordering": true,
+			"info":     false,
+			"search": false
+		} );
 	},
 	processaRepositorios(){
 		let repositotios = [];
 		$.each($('.teste:checked'), (indice, valor)=>{
 			repositotios.push(this.repositorioFactory(valor.value));
 		});
-		BD.baixarRepositorio(repositotios);
+		BD.baixarRepositorio(repositotios, this);
 	},
 	repositorioFactory(urlRepositorio){
+		let nomeRepositorioNormal = urlRepositorio.replace('https://github.com/', '').replace('/archive/master.zip','');
 		return{
-			nomeRepositorio: urlRepositorio.replace('https://github.com/', '').replace('/archive/master.zip','').replace('/', ''),
+			nomeRepositorio: nomeRepositorioNormal.slice(nomeRepositorioNormal.lastIndexOf('/'), nomeRepositorioNormal.lenght),
 			urlRepositorio
 		}
 	},
@@ -47,8 +54,5 @@ const Ferramenta = {
 		$('#formulario').fadeIn(500);
 	}
 };
-$('body').on('click', '[data-valor]', function(e){
-	console.log($(this).data());
-}) 
 Ferramenta.load();
 export{Ferramenta};

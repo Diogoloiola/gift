@@ -8,171 +8,208 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
   <title>Ferramenta</title>
 </head>
 <body>
 
   <header>
     <nav class="navbar navbar-expand-lg" style="background-color: #24292E;">
-      <a class="navbar-brand" style="color: white;" href="index.html">Ferramenta Git</a>
+      <a class="navbar-brand" style="color: white;" href="index.html">GitHub Repositories Finder Tool (GiFT)</a>
       <span style="color: #fff; font-size: 2em;">
         <i class="fab fa-github"></i>
       </span>
     </nav>
   </header>
 
-
   <section class="container-fluid">
     <article  id="formulario">
       <form>
         <div class="form-group">
-          <label for="lg-repositorio">Linguagem do Repositório</label>
-          <input type="text" class="form-control" id="lg-repositorio" required="">
-        </div>
-        <div class="form-group">
-          <label for="quant-repositorios">Quantidade de forks do repositorio</label>
-          <input class="form-control" type="text" id="quant-repositorios">
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="tam-repositorio">Tamanho do Repositorio</label>
-            <input class="form-control" type="text" id="tam-repositorio">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="licenca-repositorio">Licença</label>
-            <select id="licenca-repositorio" class="form-control">
-              <option value="">-</option>
-              <option value="apache-2.0">Apache License 2.0</option>
-              <option value="artistic-2.0">Artistic license 2.0</option>
-              <option value="bsl-1.0">Boost Software License 1.0</option>
-              <option value="bsd-2-clause">BSD 2-clause "Simplified" license</option>
-              <option value="bsd-3-clause">BSD 3-clause "New" or "Revised" license</option>
-              <option value="bsd-3-clause-clear">BSD 3-clause Clear license</option>
-              <option value="cc">Creative Commons license family</option>
-              <option value="cc0-1.0">Creative Commons Zero v1.0 Universal</option>
-              <option value="cc-by-4.0">Creative Commons Attribution 4.0</option>
-              <option value="cc-by-sa-4.0">Creative Commons Attribution Share Alike 4.0</option>
-              <option value="wtfpl">Do What The F*ck You Want To Public License</option>
-              <option value="ecl-2.0">Educational Community License v2.0</option>
-              <option value="epl-1.0">Eclipse Public License 1.0</option>
-              <option value="eupl-1.1">European Union Public License 1.1</option>
-              <option value="agpl-3.0">GNU Affero General Public License v3.0</option>
-              <option value="gpl">GNU General Public License family</option>
-              <option value="gpl-2.0">GNU General Public License v2.0</option>
-              <option value="gpl-3.0">GNU General Public License v3.0</option>
-              <option value="lgpl">GNU Lesser General Public License family</option>
-              <option value="lgpl-2.1">GNU Lesser General Public License v2.1</option>
-              <option value="lgpl-3.0">GNU Lesser General Public License v3.0</option>
-              <option value="isc">ISC</option>
-              <option value="lppl-1.3c">LaTeX Project Public License v1.3c</option>
-              <option value="ms-pl">Microsoft Public License</option>
-              <option value="mit">MIT</option>
-              <option value="mpl-2.0">Mozilla Public License 2.0</option>
-              <option value="osl-3.0">Open Software License 3.0</option>
-              <option value="postgresql">PostgreSQL License</option>
-              <option value="ofl-1.1">SIL Open Font License 1.1</option>
-              <option value="ncsa">University of Illinois/NCSA Open Source License</option>
-              <option value="unlicense">The Unlicense</option>
-              <option value="zlib">zLib License</option>
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="estrela-repositorio">Estrela do repostiorio</label>
-            <input class="form-control" type="text" id="estrela-repositorio">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-8">
-            <label for="topico-repositorio">Topicos</label>
-            <input class="form-control" type="text" id="topico-repositorio">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="tempo-repositorio">Tempo de repositório</label>
-            <select id="tempo-repositorio" class="form-control">
-              <option value="">-</option>
-              <option value="1">1 ano</option>
-              <option value="2">2 anos</option>
-              <option value="3">3 anos</option>
-              <option value="4">4 anos</option>
-              <option value="5">5 anos</option>
-              <option value="6">6 anos</option>
-              <option value="7">7 anos</option>
-              <option value="8">8 anos</option>
-              <option value="9">9 anos</option>
-              <option value="10">10 anos</option>
-              <option value="11">11 anos</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-8">
-            <label for="quantidade-repositorios">Quantidade de repositórios que serão retornados</label>
-            <input class="form-control" type="text" id="quantidade-repositorios">
-          </div>
-          <div class="form col-md-4">
-            <label for="quantidade-iusses">Quantidade de Iusses</label>
-            <input class="form-control" type="text" id="quantidade-iusses">
-          </div>
-        </div>
-        <div>
-          <button class="btn btn-outline-primary" id="pesquisar-repositorio">Pesquisar</button>
-        </div>
-      </form>
-    </article>
-    <article>
-      <div id="overlay">
-        <div id="text">
-          Pesquisando
-        </div>
+          <label for="lg-repositorio">Linguagem do Repositório 
+            <span class="color-dark" data-toggle="tooltip" data-html="true" title="Nome do repositorio a ser pesquisado">
+             <i class="fas fa-info-circle"></i>
+           </span>
+         </label>
+         <input type="text" class="form-control" id="lg-repositorio" required="">
+       </div>
+       <div class="form-group">
+        <label for="quant-repositorios">Quantidade de forks do repositorio
+          <span class="color-dark" data-toggle="tooltip" data-html="true" title="Quantidade de forks que o repositorio pode ter, no caso a consulta vai ser de >=">
+           <i class="fas fa-info-circle"></i>
+         </span>
+       </label>
+       <input class="form-control" type="text" id="quant-repositorios">
+     </div>
+     <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="tam-repositorio">Tamanho do Repositorio
+         <span class="color-dark" data-toggle="tooltip" data-html="true" title="Tamanho do repositorio que vai ser pesquisado, git pesquisa em quilobytes">
+           <i class="fas fa-info-circle"></i>
+         </span>
+       </label>
+       <input class="form-control" type="text" id="tam-repositorio">
+     </div>
+     <div class="form-group col-md-4">
+      <label for="licenca-repositorio">Licença
+        <span class="color-dark" data-toggle="tooltip" data-html="true" title="Licença do repositorio que vai ser retornado">
+         <i class="fas fa-info-circle"></i>
+       </span>
+     </label>
+     <select id="licenca-repositorio" class="form-control">
+      <option value="">-</option>
+      <option value="apache-2.0">Apache License 2.0</option>
+      <option value="artistic-2.0">Artistic license 2.0</option>
+      <option value="bsl-1.0">Boost Software License 1.0</option>
+      <option value="bsd-2-clause">BSD 2-clause "Simplified" license</option>
+      <option value="bsd-3-clause">BSD 3-clause "New" or "Revised" license</option>
+      <option value="bsd-3-clause-clear">BSD 3-clause Clear license</option>
+      <option value="cc">Creative Commons license family</option>
+      <option value="cc0-1.0">Creative Commons Zero v1.0 Universal</option>
+      <option value="cc-by-4.0">Creative Commons Attribution 4.0</option>
+      <option value="cc-by-sa-4.0">Creative Commons Attribution Share Alike 4.0</option>
+      <option value="wtfpl">Do What The F*ck You Want To Public License</option>
+      <option value="ecl-2.0">Educational Community License v2.0</option>
+      <option value="epl-1.0">Eclipse Public License 1.0</option>
+      <option value="eupl-1.1">European Union Public License 1.1</option>
+      <option value="agpl-3.0">GNU Affero General Public License v3.0</option>
+      <option value="gpl">GNU General Public License family</option>
+      <option value="gpl-2.0">GNU General Public License v2.0</option>
+      <option value="gpl-3.0">GNU General Public License v3.0</option>
+      <option value="lgpl">GNU Lesser General Public License family</option>
+      <option value="lgpl-2.1">GNU Lesser General Public License v2.1</option>
+      <option value="lgpl-3.0">GNU Lesser General Public License v3.0</option>
+      <option value="isc">ISC</option>
+      <option value="lppl-1.3c">LaTeX Project Public License v1.3c</option>
+      <option value="ms-pl">Microsoft Public License</option>
+      <option value="mit">MIT</option>
+      <option value="mpl-2.0">Mozilla Public License 2.0</option>
+      <option value="osl-3.0">Open Software License 3.0</option>
+      <option value="postgresql">PostgreSQL License</option>
+      <option value="ofl-1.1">SIL Open Font License 1.1</option>
+      <option value="ncsa">University of Illinois/NCSA Open Source License</option>
+      <option value="unlicense">The Unlicense</option>
+      <option value="zlib">zLib License</option>
+    </select>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="estrela-repositorio">Estrela do repostiorio
+      <span class="color-dark" data-toggle="tooltip" data-html="true" title="Quantidade de estrelas que o repostiorio possui">
+       <i class="fas fa-info-circle"></i>
+     </span>
+   </label>
+   <input class="form-control" type="text" id="estrela-repositorio">
+ </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-8">
+    <label for="topico-repositorio">Topicos
+      <span class="color-dark" data-toggle="tooltip" data-html="true" title="Retorna os repostiorios que tem o tópico especificado">
+       <i class="fas fa-info-circle"></i>
+     </span>
+   </label>
+   <input class="form-control" type="text" id="topico-repositorio">
+ </div>
+ <div class="form-group col-md-4">
+  <label for="tempo-repositorio">Tempo de repositório
+    <span class="color-dark" data-toggle="tooltip" data-html="true" title="Quantidade de ano que o repositorio possui">
+     <i class="fas fa-info-circle"></i>
+   </span>
+ </label>
+ <select id="tempo-repositorio" class="form-control">
+  <option value="">-</option>
+  <option value="1">1 ano</option>
+  <option value="2">2 anos</option>
+  <option value="3">3 anos</option>
+  <option value="4">4 anos</option>
+  <option value="5">5 anos</option>
+  <option value="6">6 anos</option>
+  <option value="7">7 anos</option>
+  <option value="8">8 anos</option>
+  <option value="9">9 anos</option>
+  <option value="10">10 anos</option>
+  <option value="11">11 anos</option>
+</select>
+</div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-8">
+    <label for="quantidade-repositorios">Quantidade de repositórios que serão retornados
+      <span class="color-dark" data-toggle="tooltip" data-html="true" title="Numeros de repositórios que serao retornados na consuta">
+       <i class="fas fa-info-circle"></i>
+     </span>
+   </label>
+   <input class="form-control" type="text" id="quantidade-repositorios">
+ </div>
+ <div class="form col-md-4">
+  <label for="quantidade-iusses">Quantidade de Iusses
+    <span class="color-dark" data-toggle="tooltip" data-html="true" title="Quantidade de Iusses abertas no repositórios">
+     <i class="fas fa-info-circle"></i>
+   </span>
+ </label>
+ <input class="form-control" type="text" id="quantidade-iusses">
+</div>
+</div>
+<div>
+  <button class="btn btn-outline-primary" id="pesquisar-repositorio">Pesquisar</button>
+</div>
+</form>
+</article>
+<article>
+  <div id="overlay">
+    <div id="text">
+      Pesquisando
+    </div>
+  </div>
+</article>
+<article class="container bg-white p-0 tabela-responsive" id="tabela">
+  <table class="table table-striped table-bordered text-center" id="container-tabela">
+    <thead>
+      <tr>
+        <th scope="col">Nome repositório</th>
+        <th scope="col">Criado</th>
+        <th scope="col">Baixar</th>
+        <th scope="col">Link para clone</th>
+      </tr>
+    </thead>
+    <tbody id="conteudo-tabela">
+
+    </tbody>
+  </table>
+  <div class="btn-group">
+    <button class="btn btn-primary" id="voltar">Voltar</button>
+    <button class="btn btn-primary" id="baixar-selecionado">Baixar</button>
+    <button class="btn btn-primary" id="baixar-tudo">Baixar tudo</button>
+  </div>
+</article>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="meu-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </article>
-    <article class="container bg-white p-0 tabela-responsive" id="tabela">
-      <table class="table table-striped table-bordered text-center">
-        <thead>
-          <tr>
-            <th scope="col">Nome repositório</th>
-            <th scope="col">Criado</th>
-            <th scope="col">Baixar</th>
-            <th scope="col">Link para clone</th>
-          </tr>
-        </thead>
-        <tbody id="conteudo-tabela">
+      <div class="modal-body" id="conteudo-modal">
 
-        </tbody>
-      </table>
-      <div class="btn-group">
-        <button class="btn btn-primary" id="voltar">Voltar</button>
-        <button class="btn btn-primary" id="baixar-selecionado">Baixar</button>
-        <button class="btn btn-primary" id="baixar-tudo">Baixar tudo</button>
       </div>
-    </article>
-  </section>
-
-  <!-- Modal -->
-  <div class="modal fade" id="meu-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="conteudo-modal">
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
-
-  <!-- JavaScript (Opcional) -->
-  <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script src="js/app.js" type="module"></script>
+</div>
+<!-- JavaScript (Opcional) -->
+<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script src="https://kit.fontawesome.com/77185a8aeb.js" crossorigin="anonymous"></script>
+<script src="js/app.js" type="module"></script>
 </body>
 </html>

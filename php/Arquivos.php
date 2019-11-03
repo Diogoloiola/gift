@@ -3,12 +3,9 @@
 class Arquivo
 {
 
-	private $caminho; //Que vai ficar os arquivos
-	private $repositorios; //nome do arquivo que sera baixado
+	private $caminho; //Que vai ficar os arquivo
 	public function __construct()
 	{	
-		mkdir(__DIR__.'/zipados'); //criando a pasta
-		$this->repositorios = 'repositorios1.zip'; //setando o valor nome do zip
 		$this->caminho = __DIR__.'/zipados';
 	}
 
@@ -29,21 +26,6 @@ class Arquivo
 			$success = copy($url, $caminho);
 		}
 	}
-
-	public function disponibilizar()
-	{
-		$caminhoCompleto = $this->caminho.'/'.$this->repositorios;
-		$diretorios = scandir($this->caminho);
-		array_shift($diretorios);
-		array_shift($diretorios);
-		$zip = new ZipArchive();
-		if( $zip->open($caminhoCompleto, ZipArchive::CREATE)){
-			foreach($diretorios as $file){
-				$zip->addFile($this->caminho.'/'.$file, $file);
-			}
-			$zip->close();
-		}
-	}
 }
 
 $arq = new Arquivo();
@@ -54,6 +36,4 @@ for ($i=0; $i < count($_POST['dados']) ; $i++) {
 }
 
 echo json_encode(true);
-
-$arq->disponibilizar();
 

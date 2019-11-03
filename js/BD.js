@@ -28,8 +28,10 @@ const BD = {
 			beforeSend: function () {
 				$('#formulario').fadeOut(500);
 				$('#overlay').show();
+				$('#text').html('Pesquisando');
 			},
 			success: function (resultados) {
+				console.log(resultados);
 				ferramenata.listarDados(resultados);
 			},
 			complete: function () {
@@ -38,7 +40,7 @@ const BD = {
 			}
 		})
 	},
-	baixarRepositorio(dados){
+	baixarRepositorio(dados, ferramenata){
 		$.ajax({
 			url: 'php/Arquivos.php',
 			type: 'POST',
@@ -46,11 +48,18 @@ const BD = {
 				dados
 			},
 			dataType: 'json',
+			beforeSend(){
+				$('#text').html('Baixando');
+				$('#overlay').show();
+			},
 			success(dados){
 				console.table(dados);
 			},
 			error(dados){
 				alert(dados.responseText);
+			}, 
+			complete(){
+				$('#overlay').hide();
 			}
 		})
 	}
