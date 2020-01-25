@@ -41,12 +41,11 @@ const BD = {
 		})
 	},
 	baixarRepositorio(dados, ferramenata){
+		console.log(dados)
 		$.ajax({
-			url: 'php/Arquivos.php',
+			url: '/dados',
 			type: 'POST',
-			data: {
-				dados
-			},
+			data: { dados},
 			dataType: 'json',
 			beforeSend(){
 				$('#text').html('Baixando');
@@ -56,7 +55,7 @@ const BD = {
 				console.table(dados);
 			},
 			error(dados){
-				alert(dados.responseText);
+				console.log(dados);
 			}, 
 			complete(){
 				$('#overlay').hide();

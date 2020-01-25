@@ -42,9 +42,7 @@ const Ferramenta = {
 		BD.baixarRepositorio(repositotios, this);
 	},
 	repositorioFactory(urlRepositorio){
-		let nomeRepositorioNormal = urlRepositorio.replace('https://github.com/', '').replace('/archive/master.zip','');
 		return{
-			nomeRepositorio: nomeRepositorioNormal.slice(nomeRepositorioNormal.lastIndexOf('/'), nomeRepositorioNormal.lenght),
 			urlRepositorio
 		}
 	},
