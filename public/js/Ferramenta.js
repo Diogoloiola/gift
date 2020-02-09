@@ -17,15 +17,7 @@ const Ferramenta = {
 	},
 	listarDados(dados){
 		dados.items.forEach(valor =>{
-			let valores = `
-			<tr>
-			<td>${valor.full_name}</td>
-			<td>${valor.created_at}</td>
-			<td><input type="checkbox" name="teste" class="teste" value="${valor.html_url+'/archive/master.zip'}"></td>
-			<td><button class="btn btn-default btn-copiar" data-valor="${valor.clone_url}">Copiar</button></td>
-			</tr>
-			`;
-			$('#conteudo-tabela').append(valores);
+			$('#conteudo-tabela').append(this.criaCelula(valor));
 		});
 		$('#container-tabela').DataTable({
 			paging: false,
@@ -48,6 +40,16 @@ const Ferramenta = {
 		$('#tabela').hide();
 		$('#conteudo-tabela').html('');
 		$('#formulario').fadeIn(500);
+	},
+	criaCelula(valor){
+		return  `
+		<tr>
+		<td>${valor.full_name}</td>
+		<td>${valor.created_at}</td>
+		<td><input type="checkbox" name="teste" class="teste" value="${valor.html_url+'/archive/master.zip'}"></td>
+		<td><button class="btn btn-default btn-copiar" data-valor="${valor.clone_url}">Copiar</button></td>
+		</tr>
+		`;
 	}
 };
 Ferramenta.load();
