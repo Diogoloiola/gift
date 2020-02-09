@@ -28,11 +28,9 @@ const Ferramenta = {
 			$('#conteudo-tabela').append(valores);
 		});
 		$('#container-tabela').DataTable({
-			"paging":   false,
-			"ordering": true,
-			"info":     false,
-			"search": false
-		} );
+			paging: false,
+			searching: false
+		});
 	},
 	processaRepositorios(){
 		let repositotios = [];

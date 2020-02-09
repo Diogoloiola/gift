@@ -23,8 +23,10 @@ const BD = {
 		this.complentoLink =  string;
 	},
 	fazerConsulta(ferramenata){
+		let url = this.linkApi + this.complentoLink;
+		console.log(url);
 		$.ajax({
-			url: this.linkApi + this.complentoLink,
+			url: url,
 			beforeSend: function () {
 				$('#formulario').fadeOut(500);
 				$('#overlay').show();
