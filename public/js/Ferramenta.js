@@ -42,10 +42,11 @@ const Ferramenta = {
 		$('#formulario').fadeIn(500);
 	},
 	criaCelula(valor){
+		let dataFinal = valor.created_at.slice(0,10);
 		return  `
 		<tr>
 		<td>${valor.full_name}</td>
-		<td>${valor.created_at}</td>
+		<td>${dataFinal}</td>
 		<td><input type="checkbox" name="teste" class="teste" value="${valor.html_url+'/archive/master.zip'}"></td>
 		<td><button class="btn btn-default btn-copiar" data-valor="${valor.clone_url}">Copiar</button></td>
 		</tr>
