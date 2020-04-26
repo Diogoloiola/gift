@@ -1,57 +1,39 @@
-import {BD} from './BD.js';
+import { tabela } from './tabela.js';
+import { validador } from './validadorForm.js';
+import { BD } from './BD.js';
+import { overlay } from './overlay.js';
+import { objFactory } from './objFactory.js';
+
+
 const Ferramenta = {
-	campos: document.querySelectorAll('.form-control'),
-	load(){
-		document.querySelector('#pesquisar-repositorio').onclick = this.processarDados.bind(this);
-		document.querySelector('#baixar-selecionado').onclick = this.processaRepositorios.bind(this);
-		document.querySelector('#voltar').onclick = this.voltarFormulario;
-	},
-	setarDadosModal(mensagem){
-		$('#meu-modal').modal('show');
-		$('#conteudo-modal').html(mensagem);
-	},
-	processarDados(e){
-		e.preventDefault();
-		BD.fazerQuery(this.campos);
-		BD.fazerConsulta(this);
-	},
-	listarDados(dados){
-		dados.items.forEach(valor =>{
-			$('#conteudo-tabela').append(this.criaCelula(valor));
-		});
-		$('#container-tabela').DataTable({
-			paging: false,
-			searching: false
-		});
-	},
-	processaRepositorios(){
-		let repositotios = [];
-		$.each($('.teste:checked'), (indice, valor)=>{
-			repositotios.push(this.repositorioFactory(valor.value));
-		});
-		BD.baixarRepositorio(repositotios, this);
-	},
-	repositorioFactory(urlRepositorio){
-		return{
-			urlRepositorio
-		}
-	},
-	voltarFormulario(){
-		$('#tabela').hide();
-		$('#conteudo-tabela').html('');
-		$('#formulario').fadeIn(500);
-	},
-	criaCelula(valor){
-		let dataFinal = valor.created_at.slice(0,10);
-		return  `
-		<tr>
-		<td>${valor.full_name}</td>
-		<td>${dataFinal}</td>
-		<td><input type="checkbox" name="teste" class="teste" value="${valor.html_url+'/archive/master.zip'}"></td>
-		<td><button class="btn btn-default btn-copiar" data-valor="${valor.clone_url}">Copiar</button></td>
-		</tr>
-		`;
-	}
-};
+    campos: document.querySelectorAll(".form-control"),
+    load() {
+        document.querySelector('#pesquisar-repositorio').onclick = this.antesDeEnviar.bind(this);
+        document.querySelector('#baixar-selecionado').onclick = this.processaRepositorios.bind(this);
+        document.querySelector('#voltar').onclick = tabela.voltarFormulario;
+    },
+    antesDeEnviar(e) {
+        e.preventDefault();
+        let url = BD.fazerQuery(this.campos);
+        BD.buscarRepositorios(url);
+    },
+    listarRepositorios(repositorios) {
+        repositorios.items.forEach(repositorio => {
+            let coluna = tabela.criaColuna(repositorio);
+            $('#conteudo-tabela').append(coluna);
+        });
+        overlay.hideFormOverlay();
+    },
+    processaRepositorios() {
+        let repositorios = [];
+
+        $.each($('.teste:checked'), (indice, repositorio) => {
+            repositorios.push(objFactory(repositorio.value));
+        });
+        BD.baixarRepositorio(repositorios);
+    }
+}
+
 Ferramenta.load();
-export{Ferramenta};
+
+export { Ferramenta };
