@@ -2,6 +2,7 @@
 import { BD } from './BD.js';
 
 let tabela = {
+    tamanho: 0,
     criaColuna(dados, id) {
         let dataFinal = dados.created_at.slice(0,10);
         return `

@@ -25,14 +25,18 @@ const Ferramenta = {
             BD.buscarReleases(repositorio.releases_url, indice, repositorio.html_url)
             indice++;
         });
+        tabela.tamanho = indice;
         overlay.hideFormOverlay();
     },
     processaRepositorios() {
-        let repositorios = [];
-
-        $.each($('.teste:checked'), (indice, repositorio) => {
-            repositorios.push(objFactory(repositorio.value));
-        });
+        let tam = tabela.tamanho;
+        let repositorios = []; 
+        for(let i = 0; i < tam; i++){
+            let valor = $(`#op-${i+1}`);
+            if (valor.length && valor.val().length) {
+                repositorios.push(objFactory(valor.val()));
+            }
+        }
         BD.baixarRepositorio(repositorios);
     }
 }
