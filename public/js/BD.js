@@ -1,6 +1,7 @@
 import { condicionaisQuery } from './queryApi.js';
 import { Ferramenta } from './Ferramenta.js';
 import { overlay } from './overlay.js';
+import {tabela} from './tabela.js';
 
 const BD = {
     linkApi: 'https://api.github.com/search/repositories',
@@ -42,6 +43,20 @@ const BD = {
                 $('#overlay').hide();
             }
         })
+    },
+    buscarReleases(url, indice, urlSemRelease){
+        let tam = url.length;
+        url = url.slice(0, tam-5)
+        $.ajax({
+            url: url,
+            type: 'GET',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer 85639888d256054480ae6d56fc4dce018167727e');
+            },
+            success: function(dados) {
+                tabela.criaOption(dados, indice, urlSemRelease);
+            }
+        });
     }
 }
 export { BD };

@@ -29,7 +29,7 @@ let condicionaisQuery = {
         return `created:>=${ano}-01-01`;
     },
     perPage(str) {
-        let quantidade = str ? str : 100;
+        let quantidade = str ? str : 5;
         return `&page=1&per_page=${quantidade};`
     }
 }

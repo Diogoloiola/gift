@@ -18,9 +18,12 @@ const Ferramenta = {
         BD.buscarRepositorios(url);
     },
     listarRepositorios(repositorios) {
+        let indice = 1;
         repositorios.items.forEach(repositorio => {
-            let coluna = tabela.criaColuna(repositorio);
+            let coluna = tabela.criaColuna(repositorio, indice);
             $('#conteudo-tabela').append(coluna);
+            BD.buscarReleases(repositorio.releases_url, indice, repositorio.html_url)
+            indice++;
         });
         overlay.hideFormOverlay();
     },
