@@ -9,18 +9,18 @@ exports.index = (req, res, next) => {
         // });
 
 
-    function baixar(dados, indice) {
-        if (indice < dados.length) {
-            res.json({
-                'flag': true
-            });
+        function baixar(dados, i){
+            if(i < dados.length){
+                console.log(dados[i].nome)
+                baixarArquivo(dados[i].urlRepositorio, dados[i].nome).then(function(){
+                    console.log('arquivo baixado' + dados[i].nome);
+                    baixar(dados, i + 1)
+                })
+            }else{
+                res.json({
+                    flag: true
+                })
+            }
         }
-        baixarArquivo(dados[indice].urlRepositorio, dados[indice].nome).then(() => {
-            console.log('arquivo baixado');
-            baixar(dados, indice + 1)
-        })
-    }
-
-    baixar(dados, 0);
-
+        baixar(dados, 0)
 }
