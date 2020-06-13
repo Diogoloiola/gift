@@ -2,7 +2,7 @@ import { condicionaisQuery } from './queryApi.js';
 import { Ferramenta } from './Ferramenta.js';
 import { overlay } from './overlay.js';
 import { tabela } from './tabela.js';
-
+import { token } from '../credenciais/./token.js'
 const BD = {
     linkApi: 'https://api.github.com/search/repositories',
     complementoQuery: '',
@@ -22,6 +22,7 @@ const BD = {
         let promise = this.consultarApi(url);
         overlay.showOverlayForm();
         promise.then(response => {
+            console.log(response)
             Ferramenta.listarRepositorios(response.data);
         });
     },
@@ -52,7 +53,7 @@ const BD = {
             url: url,
             type: 'GET',
             beforeSend: function(xhr) {
-                xhr.setRequestHeader('Authorization', 'Bearer 85639888d256054480ae6d56fc4dce018167727e');
+                xhr.setRequestHeader('Authorization', `Bearer ${token}`);
             },
             success: function(dados) {
                 tabela.criaOption(dados, indice, urlSemRelease);
