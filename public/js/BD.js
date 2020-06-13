@@ -1,11 +1,12 @@
 import { condicionaisQuery } from './queryApi.js';
 import { Ferramenta } from './Ferramenta.js';
 import { overlay } from './overlay.js';
-import {tabela} from './tabela.js';
+import { tabela } from './tabela.js';
 
 const BD = {
     linkApi: 'https://api.github.com/search/repositories',
     complementoQuery: '',
+    indice: 1,
     fazerQuery(campos) {
         let complementoQuery = '?q=';
         campos.forEach(campo => {
@@ -44,9 +45,9 @@ const BD = {
             }
         })
     },
-    buscarReleases(url, indice, urlSemRelease){
+    buscarReleases(url, indice, urlSemRelease) {
         let tam = url.length;
-        url = url.slice(0, tam-5)
+        url = url.slice(0, tam - 5)
         $.ajax({
             url: url,
             type: 'GET',

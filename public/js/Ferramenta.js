@@ -11,6 +11,8 @@ const Ferramenta = {
         document.querySelector('#pesquisar-repositorio').onclick = this.antesDeEnviar.bind(this);
         document.querySelector('#baixar-selecionado').onclick = this.processaRepositorios.bind(this);
         document.querySelector('#voltar').onclick = tabela.voltarFormulario;
+        document.querySelector('#retroceder').onclick = tabela.retroceder;
+        document.querySelector('#avancar').onclick = tabela.avancar;
     },
     antesDeEnviar(e) {
         e.preventDefault();

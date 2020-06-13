@@ -1,3 +1,5 @@
+import { BD } from './BD.js';
+
 let condicionaisQuery = {
     language(str) {
         if (str === '') return '';
@@ -25,12 +27,12 @@ let condicionaisQuery = {
     },
     created(str) {
         if (str === '') return '';
-            let ano = new Date().getFullYear() - parseInt(str);
+        let ano = new Date().getFullYear() - parseInt(str);
         return `created:>=${ano}-01-01`;
     },
     perPage(str) {
         let quantidade = str ? str : 5;
-        return `&page=1&per_page=${quantidade};`
+        return `&page=${BD.indice}&per_page=${quantidade};`
     }
 }
 

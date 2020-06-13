@@ -1,5 +1,5 @@
 import { BD } from './BD.js';
-
+import { Ferramenta } from './Ferramenta.js';
 let tabela = {
         tamanho: 0,
         criaColuna(dados, id) {
@@ -28,6 +28,23 @@ let tabela = {
         $(`#op-${id}`).append(`<option value="">Selecione</option>`)
            $(`#op-${id}`).append(`<option value="${url + '/archive/master.zip'}">Master</option>`)
        }
+   },
+   retroceder(){
+       if(BD.indice - 1 <= 0){
+           alert('Não pode voltar');
+       }
+       else{
+        $('#conteudo-tabela').html('');
+        BD.indice--;
+        let url = BD.fazerQuery(Ferramenta.campos);
+        BD.buscarRepositorios(url);
+       }
+   },
+   avancar(){
+        $('#conteudo-tabela').html('');
+        BD.indice++;
+        let url = BD.fazerQuery(Ferramenta.campos);
+        BD.buscarRepositorios(url);
    }
 }
 
