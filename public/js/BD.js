@@ -16,14 +16,19 @@ const BD = {
         return this.linkApi + this.complementoQuery;
     },
     consultarApi(url) {
-        return axios.get(url);
-    },
-    buscarRepositorios(url) {
-        let promise = this.consultarApi(url);
-        overlay.showOverlayForm();
-        promise.then(response => {
-            Ferramenta.listarRepositorios(response.data);
-        });
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            beforeSend: function(xhr) {
+                overlay.showOverlayForm();
+                xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+            },
+            success: function(dados) {
+                Ferramenta.listarRepositorios(dados);
+           }
+       });
+        
     },
     baixarRepositorio(dados) {
         $.ajax({

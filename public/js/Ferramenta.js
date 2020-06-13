@@ -17,7 +17,7 @@ const Ferramenta = {
     antesDeEnviar(e) {
         e.preventDefault();
         let url = BD.fazerQuery(this.campos);
-        BD.buscarRepositorios(url);
+        BD.consultarApi(url);
     },
     listarRepositorios(repositorios) {
         let indice = 1;
