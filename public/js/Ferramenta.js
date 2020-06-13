@@ -3,7 +3,7 @@ import { sanitizarNomeRepo } from './sanitizarNomeRepo.js';
 import { BD } from './BD.js';
 import { overlay } from './overlay.js';
 import { objFactory } from './objFactory.js';
-
+import { modal } from './modal.js';
 
 const Ferramenta = {
     campos: document.querySelectorAll(".form-control"),
@@ -22,7 +22,7 @@ const Ferramenta = {
     listarRepositorios(repositorios) {
         let indice = 1;
         repositorios.items.forEach(repositorio => {
-            let coluna = tabela.criaColuna(repositorio, indice);
+            let coluna = tabela.criaLinha(repositorio, indice);
             $('#conteudo-tabela').append(coluna);
             BD.buscarReleases(repositorio.releases_url, indice, repositorio.html_url)
             indice++;
@@ -41,7 +41,11 @@ const Ferramenta = {
 
             }
         }
-        BD.baixarRepositorio(repositorios);
+        if (repositorios.length === 0) {
+            modal.setarDadosModal('Nenhum repositorio selecionado')
+        } else {
+            BD.baixarRepositorio(repositorios);
+        }
     }
 }
 

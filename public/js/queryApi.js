@@ -32,7 +32,7 @@ let condicionaisQuery = {
     },
     perPage(str) {
         let quantidade = str ? str : 5;
-        return `&page=${BD.indice}&per_page=${quantidade};`
+        return `&page=${BD.indice}&per_page=${quantidade}`
     }
 }
 

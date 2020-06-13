@@ -1,51 +1,74 @@
 import { BD } from './BD.js';
 import { Ferramenta } from './Ferramenta.js';
 let tabela = {
-        tamanho: 0,
-        criaColuna(dados, id) {
-            let dataFinal = dados.created_at.slice(0, 10);
-            return `
-        <tr>
-        <td id="nome-${id}">${dados.full_name}</td>
-        <td>${dataFinal}</td>
-        <td><select id="op-${id}"><select></td>
-        </tr>
-        `;
-        },
-        voltarFormulario() {
-            $('#tabela').hide();
-            $('#conteudo-tabela').html('');
-            $('#formulario').fadeIn(500);
-        },
-        criaOption(dados, id, url) {
-            if (dados.length) {
-                $(`#op-${id}`).append(`<option value="">Selecione</option>`)
-                dados.forEach(elemento => {
-                            $(`#op-${id}`).append(`<option value="${url + `/archive/${elemento.tag_name}.zip`}">${elemento.name}</option>`)
-                });
+    tamanho: 0,
+    criaLinha(dados, id) {
+        let dataFinal = dados.created_at.slice(0, 10);
+        const linha = document.createElement('tr');
+        const coluna1 = document.createElement('td');
+        const coluna2 = document.createElement('td');
+        const coluna3 = document.createElement('td');
+        const select = document.createElement('select');
 
-       } else {
-        $(`#op-${id}`).append(`<option value="">Selecione</option>`)
-           $(`#op-${id}`).append(`<option value="${url + '/archive/master.zip'}">Master</option>`)
-       }
-   },
-   retroceder(){
-       if(BD.indice - 1 <= 0){
-           alert('Não pode voltar');
-       }
-       else{
+        coluna1.id = `nome-${id}`;
+        coluna1.innerHTML = dados.full_name;
+
+        coluna2.innerHTML = dataFinal
+
+        select.id = `op-${id}`;
+
+        coluna3.appendChild(select)
+
+        linha.appendChild(coluna1)
+        linha.appendChild(coluna2)
+        linha.appendChild(coluna3)
+        return linha;
+    },
+    voltarFormulario() {
+        $('#tabela').hide();
         $('#conteudo-tabela').html('');
-        BD.indice--;
-        let url = BD.fazerQuery(Ferramenta.campos);
-        BD.buscarRepositorios(url);
-       }
-   },
-   avancar(){
+        $('#formulario').fadeIn(500);
+    },
+    criaOption(dados, id, url) {
+
+        const select = document.querySelector(`#op-${id}`);
+        const optionVazio = document.createElement('option');
+
+        optionVazio.value = '';
+        optionVazio.innerHTML = 'Selecione'
+
+        select.appendChild(optionVazio);
+
+        if (dados.length) {
+            dados.forEach(informacao => {
+                const opiton = document.createElement('option');
+                opiton.value = url + `/archive/${informacao.tag_name}.zip`;
+                opiton.innerHTML = informacao.name;
+                select.appendChild(opiton);
+            })
+        } else {
+            const opiton = document.createElement('option');
+            opiton.value = url + '/archive/master.zip';
+            opiton.innerHTML = 'Master';
+            select.appendChild(opiton);
+        }
+    },
+    retroceder() {
+        if (BD.indice - 1 <= 0) {
+            alert('Não pode voltar');
+        } else {
+            $('#conteudo-tabela').html('');
+            BD.indice--;
+            let url = BD.fazerQuery(Ferramenta.campos);
+            BD.buscarRepositorios(url);
+        }
+    },
+    avancar() {
         $('#conteudo-tabela').html('');
         BD.indice++;
         let url = BD.fazerQuery(Ferramenta.campos);
         BD.buscarRepositorios(url);
-   }
+    }
 }
 
 export { tabela };

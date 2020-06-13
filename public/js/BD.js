@@ -22,7 +22,6 @@ const BD = {
         let promise = this.consultarApi(url);
         overlay.showOverlayForm();
         promise.then(response => {
-            console.log(response)
             Ferramenta.listarRepositorios(response.data);
         });
     },
