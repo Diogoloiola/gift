@@ -5,6 +5,8 @@ Essa ferramenta foi desenvolvida com o propósito de facilitar a construção de
 você pode especificar características que podem ser importantes para a sua base de dados. Ela também permite que você selecione as
 releases do repositório. Com o repositório selecionado você também poderá baixar ele, sem link externos
 
+## Campos que GIFT disponibiliza
+
 * Linguagem
 * Quantidade de forks
 * Tamanho do repositório
@@ -25,5 +27,15 @@ Para termos acesso as releases termos que ter um token pessoa da sua conta. Mas 
 abaixo está a demonstação de como conseguir esse token e como colocar na ferramenta.
 
 <img src="img/demostracao.gif">
-<img src="img/colocandoCredenciais.gif>
+
+## Colocando o Token na GIFT
+
+Vá até a pasta no caminho abaixo.
+
+     public/credenciais/token.js
+E coloque como o gif abaixo
+
+
+
+<img src="img/colocandoCredenciais.gif">
 
