@@ -1,5 +1,5 @@
 import { tabela } from './tabela.js';
-import { validador } from './validadorForm.js';
+import { sanitizarNomeRepo } from './sanitizarNomeRepo.js';
 import { BD } from './BD.js';
 import { overlay } from './overlay.js';
 import { objFactory } from './objFactory.js';
@@ -30,11 +30,13 @@ const Ferramenta = {
     },
     processaRepositorios() {
         let tam = tabela.tamanho;
-        let repositorios = []; 
-        for(let i = 0; i < tam; i++){
+        let repositorios = [];
+        for (let i = 0; i < tam; i++) {
             let valor = $(`#op-${i+1}`);
             if (valor.length && valor.val().length) {
-                repositorios.push(objFactory(valor.val()));
+                let conteudo = valor.val()
+                repositorios.push(objFactory(conteudo, sanitizarNomeRepo(conteudo)));
+
             }
         }
         BD.baixarRepositorio(repositorios);

@@ -1,20 +1,32 @@
-const request = require('request');
 const fs = require('fs');
+const Path = require('path')
+const Axios = require('axios');
 
 
-function baixarArquivo(url) {
-    let dataAtual = new Date().toString().slice(7, 15).replace(' ', '');
-    let nome = parseNomeRepositorio(url);
-    request(url, function(error, response, body) {
-        if (response.statusCode == 200) {
-            return 1;
-        }
-    }).pipe(fs.createWriteStream(`repositorios/${nome}.zip`));
-}
+async function baixarArquivo(url, nome) {
+    console.log(url);
+    const path = Path.resolve(__dirname, '../repositorios', `${nome}.zip`);
 
-function parseNomeRepositorio(urlRepositorio) {
-    let nomeRepositorioNormal = urlRepositorio.replace('https://github.com/', '').replace('/archive/master.zip', '');
-    return nomeRepositorioNormal.slice(nomeRepositorioNormal.lastIndexOf('/'), nomeRepositorioNormal.lenght);
+
+    const response = await Axios({
+        method: 'GET',
+        url: url,
+        responseType: 'stream'
+    });
+
+
+    response.data.pipe(fs.createWriteStream(path));
+
+
+    return new Promise((resolve, reject) => {
+        response.data.on('end', () => {
+            resolve();
+        })
+
+        response.data.on('error', error => {
+            reject(error);
+        })
+    });
 }
 
 module.exports = baixarArquivo;

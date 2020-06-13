@@ -1,7 +1,8 @@
-function objFactory(urlRepositorio){
+function objFactory(urlRepositorio, nome) {
     return {
-        urlRepositorio
+        urlRepositorio,
+        nome
     }
 }
 
-export{objFactory};
+export { objFactory };
