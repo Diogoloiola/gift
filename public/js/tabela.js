@@ -41,9 +41,10 @@ let tabela = {
 
         if (dados.length) {
             dados.forEach(informacao => {
+                console.log(informacao)
                 const opiton = document.createElement('option');
                 opiton.value = url + `/archive/${informacao.tag_name}.zip`;
-                opiton.innerHTML = informacao.name;
+                opiton.innerHTML = informacao.tag_name;
                 select.appendChild(opiton);
             })
         } else {

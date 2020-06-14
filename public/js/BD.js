@@ -3,6 +3,7 @@ import { Ferramenta } from './Ferramenta.js';
 import { overlay } from './overlay.js';
 import { tabela } from './tabela.js';
 import { token } from '../credenciais/./token.js'
+
 const BD = {
     linkApi: 'https://api.github.com/search/repositories',
     complementoQuery: '',
@@ -26,9 +27,9 @@ const BD = {
             },
             success: function(dados) {
                 Ferramenta.listarRepositorios(dados);
-           }
-       });
-        
+            }
+        });
+
     },
     baixarRepositorio(dados) {
         $.ajax({
@@ -37,16 +38,8 @@ const BD = {
             data: { dados },
             dataType: 'json',
             beforeSend() {
-                overlay.showOverlay('Baixando');
-            },
-            success(dados) {
-                console.table(dados);
-            },
-            error(dados) {
-                console.log(dados);
-            },
-            complete() {
-                $('#overlay').hide();
+                overlay.showOverlay('Os arquivos estão sendo baixados, confira no terminal para ver se foi concluido');
+                overlay.btnClose();
             }
         })
     },

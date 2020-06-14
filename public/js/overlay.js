@@ -1,19 +1,23 @@
 const overlay = {
-    showOverlayForm(msg){
+    showOverlayForm(msg) {
         $('#formulario').fadeOut(500);
         this.showOverlay(msg);
+        $('.closebtn').css("display", "none");
     },
-    showOverlay(msg){
+    showOverlay(msg) {
         $('#overlay').show();
         $('#text').html(msg);
     },
-    hideFormOverlay(){
+    hideFormOverlay() {
         $('#overlay').hide();
         $('#tabela').show();
     },
-    hideOverlay(){
+    hideOverlay() {
         $('#overlay').hide();
+    },
+    btnClose() {
+        $('.closebtn').css("display", "block")
     }
 }
 
-export {overlay};
+export { overlay };

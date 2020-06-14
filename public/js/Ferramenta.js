@@ -13,6 +13,7 @@ const Ferramenta = {
         document.querySelector('#voltar').onclick = tabela.voltarFormulario;
         document.querySelector('#retroceder').onclick = tabela.retroceder;
         document.querySelector('#avancar').onclick = tabela.avancar;
+        document.querySelector('.closebtn').onclick = overlay.hideOverlay;
     },
     antesDeEnviar(e) {
         e.preventDefault();

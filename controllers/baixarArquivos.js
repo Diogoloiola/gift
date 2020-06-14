@@ -4,7 +4,6 @@ const Axios = require('axios');
 
 
 async function baixarArquivo(url, nome) {
-    console.log(url);
     const path = Path.resolve(__dirname, '../repositorios', `${nome}.zip`);
 
 
