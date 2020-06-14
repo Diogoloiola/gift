@@ -60,14 +60,14 @@ let tabela = {
             $('#conteudo-tabela').html('');
             BD.indice--;
             let url = BD.fazerQuery(Ferramenta.campos);
-            BD.buscarRepositorios(url);
+            BD.consultarApi(url);
         }
     },
     avancar() {
         $('#conteudo-tabela').html('');
         BD.indice++;
         let url = BD.fazerQuery(Ferramenta.campos);
-        BD.buscarRepositorios(url);
+        BD.consultarApi(url);
     }
 }
 

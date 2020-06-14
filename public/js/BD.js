@@ -21,7 +21,7 @@ const BD = {
             url: url,
             type: 'GET',
             beforeSend: function(xhr) {
-                overlay.showOverlayForm();
+                overlay.showOverlayForm('Pesquisando');
                 xhr.setRequestHeader('Authorization', `Bearer ${token}`);
             },
             success: function(dados) {
