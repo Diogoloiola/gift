@@ -5,6 +5,10 @@ Essa ferramenta foi desenvolvida com o propósito de facilitar a construção de
 você pode especificar características que podem ser importantes para a sua base de dados. Ela também permite que você selecione as
 releases do repositório. Com o repositório selecionado você também poderá baixar ele, sem link externos
 
+## Processo de instalção
+
+Para instalar as dependências utilize o comando, npm install. Para executar o programa digite, node server.js. Agora digite no navegador localhost:3000
+
 ## Campos que GIFT disponibiliza
 
 * Linguagem
