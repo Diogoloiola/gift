@@ -1,23 +1,33 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <header class="header">
-      <nav>
-        <a href="">GitHub Repositories Finder Tool (GiFT)</a>
-      </nav>
+    <nav>
+      <a href="">GitHub Repositories Finder Tool (GiFT)</a>
+    </nav>
   </header>
+  <main class="container">
+    <div>
+      <label>Linguagem do repositório</label>
+      <custom-input :inputType="'text'" v-model="data.language"></custom-input>
+    </div>
+  </main>
 </template>
 
 <style scoped>
-  .header{
-    padding: 20px;
-    background-color: #343a40;
-  }
-  .header a{
-    color: #ffff;
-  }
+.header {
+  padding: 20px;
+  background-color: #343a40;
+}
+.header a {
+  color: #ffff;
+}
 </style>
+
+<script setup lang="ts">
+import CustomInput from "./components/Input.vue";
+
+import { reactive } from "@vue/reactivity";
+
+const data = reactive({
+  language: "",
+});
+</script>
