@@ -18,3 +18,27 @@ body {
   text-align: left;
   background-color: #f2f2f2;
 }
+
+.d-flex{
+  display: flex;
+}
+
+.justify-content-between{
+  justify-content: space-between;
+}
+
+.w-45{
+  width: 45%;
+}
+
+.w-33{
+  width: 33%;
+}
+
+.w-50{
+  width: 49%;
+}
+
+.mt-3{
+  margin-top: 30px;
+}
