@@ -16,25 +16,35 @@
     <div class="d-flex justify-content-between mt-3">
       <div class="w-45">
         <label>Tempo do repositorio</label>
-        <custom-input :inputType="'text'" v-model="data.ageRepository"></custom-input>
+        <custom-input
+          :inputType="'text'"
+          v-model="data.ageRepository"
+        ></custom-input>
       </div>
-       <div class="w-33">
+      <div class="w-33">
         <label>Licença</label>
-        <custom-input :inputType="'text'" v-model="data.licence"></custom-input>
+        <select class="input">
+          <option :value=licence.value v-for="(licence, index) in licences" :key="index">
+            {{licence.name}}
+          </option>
+        </select>
       </div>
-       <div>
+      <div>
         <label>Quantidade de estrelas</label>
         <custom-input :inputType="'text'" v-model="data.starts"></custom-input>
       </div>
     </div>
-      <div class="d-flex justify-content-between mt-3 ">
+    <div class="d-flex justify-content-between mt-3">
       <div class="w-50">
         <label>Tópicos</label>
         <custom-input :inputType="'text'" v-model="data.topics"></custom-input>
       </div>
-       <div class="w-50">
+      <div class="w-50">
         <label>Tempo de repositório</label>
-        <custom-input :inputType="'text'" v-model="data.ageRepository"></custom-input>
+        <custom-input
+          :inputType="'text'"
+          v-model="data.ageRepository"
+        ></custom-input>
       </div>
     </div>
     <div class="mt-3">
@@ -51,12 +61,12 @@
 .header a {
   color: #ffff;
 }
-.container{
+.container {
   width: 98%;
   margin: auto;
 }
 
-.button{
+.button {
   padding: 10px 20px;
   background: transparent;
   outline: none;
@@ -65,16 +75,26 @@
   border-radius: 5px;
 }
 
-.button:hover{
+.button:hover {
   cursor: pointer;
+}
+.input {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  border: 1px solid #9eb3c9;
+  border-radius: 5px;
+  background: #fff;
 }
 </style>
 
 <script setup lang="ts">
 import CustomInput from "./components/Input.vue";
-
 import { reactive } from "@vue/reactivity";
+import licences from "./mocks/licences";
 
+console.log(licences);
 type Params = {
   language: string;
   forks: number;
@@ -83,15 +103,15 @@ type Params = {
   starts: number;
   topics: string;
   ageRepository: number;
-}
+};
 
 const data = reactive<Params>({
   language: "",
   forks: 0,
   sizeRepository: 0,
-  licence: '',
+  licence: "",
   starts: 0,
-  topics: '',
+  topics: "",
   ageRepository: 0,
 });
 </script>
