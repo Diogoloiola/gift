@@ -20,6 +20,10 @@
 .header a {
   color: #ffff;
 }
+.container{
+  width: 98%;
+  margin: auto;
+}
 </style>
 
 <script setup lang="ts">
