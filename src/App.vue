@@ -19,15 +19,15 @@
       </div>
       <div class="d-flex justify-content-between mt-3">
         <div class="w-45">
-          <label>Tempo do repositorio</label>
+          <label>Tamanho do repositorio</label>
           <custom-input
             :inputType="'number'"
-            v-model="data.ageRepository"
+            v-model="data.size"
           ></custom-input>
         </div>
         <div class="w-33">
           <label>Licença</label>
-          <select v-model="data.licence" class="input">
+          <select v-model="data.license" class="input">
             <option
               :value="licence.value"
               v-for="(licence, index) in licences"
@@ -39,10 +39,7 @@
         </div>
         <div>
           <label>Quantidade de estrelas</label>
-          <custom-input
-            :inputType="'text'"
-            v-model="data.starts"
-          ></custom-input>
+          <custom-input :inputType="'text'" v-model="data.stars"></custom-input>
         </div>
       </div>
       <div class="d-flex justify-content-between mt-3">
@@ -51,13 +48,6 @@
           <custom-input
             :inputType="'text'"
             v-model="data.topics"
-          ></custom-input>
-        </div>
-        <div class="w-50">
-          <label>Tempo de repositório</label>
-          <custom-input
-            :inputType="'number'"
-            v-model="data.ageRepository"
           ></custom-input>
         </div>
       </div>
@@ -108,28 +98,29 @@
 import CustomInput from "./components/Input.vue";
 import { reactive } from "@vue/reactivity";
 import licences from "./mocks/licences";
+import createQueryForRequest from "./api/github/utils";
+import { Client } from "./api/github/client";
 
 type Params = {
   language: string;
   forks: number;
-  sizeRepository: number;
-  licence: string;
-  starts: number;
+  size: number;
+  license: string;
+  stars: number;
   topics: string;
-  ageRepository: number;
 };
 
 const data = reactive<Params>({
   language: "",
   forks: 0,
-  sizeRepository: 0,
-  licence: "",
-  starts: 0,
+  size: 0,
+  license: "",
+  stars: 0,
   topics: "",
-  ageRepository: 0,
 });
 
-function handleLogin(): void {
-  console.log(data.forks);
+async function handleLogin(): Promise<void> {
+  const client = new Client();
+  const result = await client.repositories().getAll({ q: createQueryForRequest(data), per_page: 100 });
 }
 </script>
