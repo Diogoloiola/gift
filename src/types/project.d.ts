@@ -1,4 +1,4 @@
-type project = {
+type Project = {
     id: number;
     node_id: string;
     name: string;
