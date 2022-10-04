@@ -16,7 +16,7 @@
             <div class="w-33">
                 <label>Licença</label>
                 <select v-model="data.license" class="input">
-                    <option :value="licence.value" v-for="(licence, index) in licences" :key="index">
+                    <option :value="licence.value" v-for="(licence, index) in licenses" :key="index">
                         {{ licence.name }}
                     </option>
                 </select>
@@ -56,7 +56,7 @@
 <script lang="ts" setup>
 import CustomInput from "../components/Input.vue";
 import createQueryForRequest from "../api/github/utils";
-import licences from "../mocks/licences";
+import licenses from "../mocks/licenses";
 import { ref } from "@vue/reactivity";
 
 const data = ref<Params>({
