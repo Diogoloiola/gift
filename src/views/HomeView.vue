@@ -7,7 +7,7 @@
   <main class="container">
     <Form v-if="formIsVisible" @searchProjects='searchProjects' />
     <AppTable v-else :headers="['Nome projeto', 'Descrição']">
-      <tr v-for="(project, id) in projects?.items" :id="`${id}`">
+      <tr v-for="(project, id) in projects?.items" :id="`${id}`" @click="$router.push(`details/${project.full_name}`)">
         <td>{{project.name}}</td>
         <td>{{project.description}}</td>
       </tr>
