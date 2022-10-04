@@ -12,6 +12,8 @@
         <td>{{project.description}}</td>
       </tr>
     </AppTable>
+
+    <AppOverlay v-if="searchingProjects" text="Buscando projetos"/>
   </main>
 </template>
 
@@ -38,6 +40,7 @@ import Form from "./Form.vue";
 
 import { Client } from "../api/github/client";
 import AppTable from "../components/AppTable.vue";
+import AppOverlay from "../components/AppOverlay.vue";
 
 const formIsVisible = ref(true);
 
@@ -53,12 +56,16 @@ const data = ref<RequestForGithubApi>({
   page: 1
 });
 
+const searchingProjects = ref(false)
+
 const projects = ref<Result>();
 
 async function searchProjects(query: string): Promise<void> {
   const client = new Client();
+  searchingProjects.value = true
   data.value.q = query;
   projects.value = await client.repositories().getAll(data.value);
   formIsVisible.value = false;
+  searchingProjects.value = false
 }
 </script>
