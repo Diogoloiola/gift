@@ -1,9 +1,8 @@
 import axiosClient from './axiosInstance';
-import { AxiosResponse } from 'axios';
 
 class Repository {
-  async getAll(params: Record<string, unknown>): Promise<AxiosResponse> {
-    return await axiosClient.get('/repositories', { params: params });
+  async getAll(params: Record<string, unknown>): Promise<Result> {
+    return await (await axiosClient.get('/repositories', { params: params })).data;
   }
 }
 
