@@ -6,8 +6,8 @@
   </header>
   <main class="container">
     <Form v-if="formIsVisible" @searchProjects='searchProjects' />
-    <AppTable v-else :headers="['Nome projeto', 'Descrição']">
-      <tr v-for="(project, id) in projects?.items" :id="`${id}`" @click="$router.push(`details/${project.full_name}`)">
+    <AppTable v-else :headers="['Nome projeto', 'Descrição']" :total_count="projects?.total_count" :back="backToForm" >
+      <tr v-for="(project, id) in projects?.items" :id="`${id}`" @click="$router.push(`resume/${project.full_name}`)">
         <td>{{project.name}}</td>
         <td>{{project.description}}</td>
       </tr>
@@ -52,7 +52,7 @@ type RequestForGithubApi = {
 
 const data = ref<RequestForGithubApi>({
   q: '',
-  per_page: 15,
+  per_page: 13,
   page: 1
 });
 
@@ -68,4 +68,6 @@ async function searchProjects(query: string): Promise<void> {
   formIsVisible.value = false;
   searchingProjects.value = false
 }
+
+const backToForm = () => formIsVisible.value = !formIsVisible.value;
 </script>
