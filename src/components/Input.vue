@@ -3,7 +3,7 @@
     class="input"
     :type="data.inputType"
     :placeholder="data.placeholder"
-     @input="$emit('update:modelValue', $event.target.value)"
+     @input="$emit('update:modelValue', handleInputChange($event))"
   />
 </template>
 
@@ -33,4 +33,6 @@ const data = defineProps({
 });
 
 const emit = defineEmits(["update:modelValue"]);
+
+const handleInputChange = (event: Event) =>  (event.target as HTMLInputElement).value
 </script>
