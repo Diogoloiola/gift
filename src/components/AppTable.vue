@@ -20,7 +20,7 @@
         </table>
     </div>
     <div style="width: 5%; margin-top: 10px;">
-        <RoundedButton text="Voltar" :back="() => props?.back()"/>
+        <RoundedButton text="Voltar" :fn="() => props?.back()"/>
     </div>
 </template>
 

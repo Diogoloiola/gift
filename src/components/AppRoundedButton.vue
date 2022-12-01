@@ -25,10 +25,14 @@
 <script lang="ts" setup>
   type Props = {
     text: string,
-    back: () => void;
+    fn?: () => void;
   }
 
   const props = defineProps<Props>();
 
-  const handleClick = () => props?.back();
+  const handleClick = (()=>{
+    if(props.fn){
+      props.fn();
+    }
+  });
 </script>
