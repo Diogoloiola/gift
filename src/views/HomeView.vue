@@ -2,14 +2,17 @@
   <Header />
   <main class="container">
     <Form v-if="formIsVisible" @searchProjects='searchProjects' />
-    <AppTable v-else :headers="['Nome projeto', 'Descrição']" :total_count="projects?.total_count" :back="backToForm" >
-      <tr v-for="(project, id) in projects?.items" :id="`${id}`" @click="$router.push(`details/${project.full_name}`)">
-        <td>{{project.name}}</td>
-        <td>{{project.description}}</td>
+    <AppTable v-else-if="(!showDetails() && !formIsVisible)" :headers="['Nome projeto', 'Descrição']" :total_count="projects?.total_count" :back="backToForm">
+      <tr v-for="(project, id) in projects?.items" :id="`${id}`" @click="formatDetailsProject(project.full_name)">
+        <td>{{ project.name }}</td>
+        <td>{{ project.description }}</td>
       </tr>
     </AppTable>
 
-    <AppOverlay v-if="searchingProjects" text="Buscando projetos"/>
+    <RepositoryDetails v-if="showDetails()" :name="projectDetails?.name ?? ''" :organization="projectDetails?.organization ?? ''" :fn="() => resetProjectDetails()"/>
+
+    <AppOverlay v-if="searchingProjects" text="Buscando projetos" />
+
   </main>
 </template>
 
@@ -29,8 +32,16 @@ import { Client } from "../api/github/client";
 import AppTable from "../components/AppTable.vue";
 import AppOverlay from "../components/AppOverlay.vue";
 import Header from "../components/Header.vue";
+import RepositoryDetails from "./RepositoryDetails.vue";
 
 const formIsVisible = ref(true);
+
+type ProjectDetails = {
+    organization: string,
+    name: string
+}
+
+const projectDetails = ref<ProjectDetails>();
 
 type RequestForGithubApi = {
   q: string,
@@ -58,4 +69,17 @@ async function searchProjects(query: string): Promise<void> {
 }
 
 const backToForm = () => formIsVisible.value = !formIsVisible.value;
+
+const formatDetailsProject = (full_name: string) => {
+  const [organization, name] = full_name.split('/')
+
+  projectDetails.value = { organization, name }
+}
+
+const showDetails = () => projectDetails.value?.name?.length && projectDetails.value?.organization?.length
+
+const resetProjectDetails = () => {
+  projectDetails.value = { name: '', organization: '' }
+}
+
 </script>

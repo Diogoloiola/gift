@@ -1,5 +1,4 @@
 <template>
-    <Header />
     <section class="container">
         <div class="d-flex justify-content-between mt-3">
             <div class="w-45">
@@ -34,7 +33,7 @@
     </section>
     <section>
         <div class="p-absolute bottom-0">
-            <RoundedButton text="Voltar para página inicial" :fn="() => $router.push('/')"/>
+            <RoundedButton text="Voltar para pagina de resultados" :fn="() => backToProject()"/>
         </div>
     </section>
 
@@ -51,11 +50,9 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
 import { Client } from '../api/github/client';
 import RoundedButton from './../components/AppRoundedButton.vue';
 import AppOverlay from "../components/AppOverlay.vue";
-import Header from "../components/Header.vue";
 import CustomInput from "../components/Input.vue";
 
 import { useToast } from 'vue-toastification';
@@ -66,9 +63,14 @@ type UrlDownload = {
     tarUrl: string,
 }
 
-const route = useRoute();
-const organization = route.params.organization as string;
-const name = route.params.name as string;
+type Props = {
+    organization: string,
+    name: string,
+    fn?: () => void;
+}
+
+const props = defineProps<Props>();
+
 const project = ref<Project>();
 const releases = ref<Release[]>([]);
 const idProject = ref<Number>();
@@ -79,8 +81,8 @@ const isVisible = ref<boolean>(false);
 onMounted(async () => {
     isVisible.value = true;
     const client = new Client().repositories();
-    project.value = await client.findByName(organization, name);
-    releases.value = await client.findReleasesByOrganizationName(organization, name);
+    project.value = await client.findByName(props.organization, props.name);
+    releases.value = await client.findReleasesByOrganizationName(props.organization, props.name);
     isVisible.value = false;
 })
 
@@ -107,5 +109,12 @@ const downloadFile = (url: string) => {
     document.body.appendChild(link);
     link.click();
     link.remove();
+}
+
+
+const backToProject = () => {
+    if(props?.fn){
+        props.fn()
+    }
 }
 </script>
