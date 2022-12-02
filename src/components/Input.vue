@@ -3,6 +3,8 @@
     class="input"
     :type="data.inputType"
     :placeholder="data.placeholder"
+    :value="data.value"
+    :disabled="disable"
      @input="$emit('update:modelValue', handleInputChange($event))"
   />
 </template>
@@ -30,6 +32,16 @@ const data = defineProps({
     type: String,
     required: true,
   },
+  value: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  disable: {
+    type: Boolean,
+    required: false,
+    default: true
+  }
 });
 
 const emit = defineEmits(["update:modelValue"]);
