@@ -42,3 +42,16 @@ body {
 .mt-3 {
   margin-top: 30px;
 }
+
+.p-relative{
+  position: relative;
+}
+
+.p-absolute{
+  position: absolute;
+}
+
+.bottom-0{
+  bottom: 10px;
+  left: 10px;
+}

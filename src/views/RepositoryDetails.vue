@@ -32,6 +32,11 @@
                     :href="`${project?.html_url}/archive/refs/heads/main.zip`">aqui</a></p>
         </div>
     </section>
+    <section>
+        <div class="p-absolute bottom-0">
+            <RoundedButton text="Voltar para página inicial" :fn="() => $router.push('/')"/>
+        </div>
+    </section>
 
     <AppOverlay v-if="isVisible" text="Carregando..." />
 </template>
