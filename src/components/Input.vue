@@ -3,7 +3,6 @@
     class="input"
     :type="data.inputType"
     :placeholder="data.placeholder"
-    :value="data.value"
     :disabled="disable"
      @input="$emit('update:modelValue', handleInputChange($event))"
   />
@@ -17,11 +16,11 @@
   outline: none;
   border: 1px solid #9eb3c9;
   border-radius: 5px;
+  cursor: pointer;
 }
 </style>
 
 <script setup lang="ts">
-import { ref } from "vue";
 
 const data = defineProps({
   placeholder: {
@@ -35,12 +34,11 @@ const data = defineProps({
   value: {
     type: String,
     required: false,
-    default: ''
   },
   disable: {
     type: Boolean,
     required: false,
-    default: true
+    default: false
   }
 });
 

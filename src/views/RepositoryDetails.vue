@@ -4,15 +4,15 @@
         <div class="d-flex justify-content-between mt-3">
             <div class="w-45">
                 <label>Nome do projeto</label>
-                <custom-input :inputType="'text'" :value="project?.full_name" :disable="true"></custom-input>
+                <custom-input :inputType="'text'" :placeholder="project?.full_name" :disable="true"></custom-input>
             </div>
             <div class="w-33">
                 <label>Descrição</label>
-                <custom-input :inputType="'text'" :value="project?.description" :disable="true"></custom-input>
+                <custom-input :inputType="'text'" :placeholder="project?.description" :disable="true"></custom-input>
             </div>
             <div>
                 <label>Dono do projeto</label>
-                <custom-input :inputType="'text'" :value="project?.owner?.login" :disable="true"></custom-input>
+                <custom-input :inputType="'text'" :placeholder="project?.owner?.login" :disable="true"></custom-input>
             </div>
         </div>
         <div class="w-33 mt-3" v-if="releases.length">
