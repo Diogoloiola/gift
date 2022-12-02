@@ -2,14 +2,17 @@
   <Header />
   <main class="container">
     <Form v-if="formIsVisible" @searchProjects='searchProjects' />
-    <AppTable v-else-if="(!showDetails() && !formIsVisible)" :headers="['Nome projeto', 'Descrição']" :total_count="projects?.total_count" :back="backToForm">
+
+    <AppTable v-else-if="(!showDetails() && !formIsVisible)" :headers="['Nome projeto', 'Descrição']"
+      :total_count="projects?.total_count" :back="backToForm">
       <tr v-for="(project, id) in projects?.items" :id="`${id}`" @click="formatDetailsProject(project.full_name)">
         <td>{{ project.name }}</td>
         <td>{{ project.description }}</td>
       </tr>
     </AppTable>
 
-    <RepositoryDetails v-if="showDetails()" :name="projectDetails?.name ?? ''" :organization="projectDetails?.organization ?? ''" :fn="() => resetProjectDetails()"/>
+    <RepositoryDetails v-if="showDetails()" :name="projectDetails?.name ?? ''"
+      :organization="projectDetails?.organization ?? ''" :fn="() => resetProjectDetails()" />
 
     <AppOverlay v-if="searchingProjects" text="Buscando projetos" />
 
@@ -33,12 +36,14 @@ import AppTable from "../components/AppTable.vue";
 import AppOverlay from "../components/AppOverlay.vue";
 import Header from "../components/Header.vue";
 import RepositoryDetails from "./RepositoryDetails.vue";
+import { useToast } from 'vue-toastification';
 
 const formIsVisible = ref(true);
+const toast = useToast();
 
 type ProjectDetails = {
-    organization: string,
-    name: string
+  organization: string,
+  name: string
 }
 
 const projectDetails = ref<ProjectDetails>();
@@ -60,12 +65,18 @@ const searchingProjects = ref(false)
 const projects = ref<Result>();
 
 async function searchProjects(query: string): Promise<void> {
-  const client = new Client();
-  searchingProjects.value = true
-  data.value.q = query;
-  projects.value = await client.repositories().getAll(data.value);
-  formIsVisible.value = false;
-  searchingProjects.value = false
+  try {
+    const client = new Client();
+    searchingProjects.value = true
+    data.value.q = query;
+    projects.value = await client.repositories().getAll(data.value);
+    formIsVisible.value = false;
+    searchingProjects.value = false
+  } catch (error) {
+    toast.error('Algo deu errado ao procurar o projeto');
+    searchingProjects.value = false;
+  }
+
 }
 
 const backToForm = () => formIsVisible.value = !formIsVisible.value;
