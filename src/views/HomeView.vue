@@ -4,7 +4,7 @@
     <Form v-if="formIsVisible" @searchProjects='searchProjects' />
 
     <AppTable v-else-if="(!showDetails() && !formIsVisible)" :headers="['Nome projeto', 'Descrição']"
-      :total_count="projects?.total_count" :back="backToForm">
+      :total_count="projects?.total_count" :back="backToForm" :nextPage="nextPage" :previousPage="previousPage">
       <tr v-for="(project, id) in projects?.items" :id="`${id}`" @click="formatDetailsProject(project.full_name)">
         <td>{{ project.name }}</td>
         <td>{{ project.description }}</td>
@@ -91,6 +91,25 @@ const showDetails = () => projectDetails.value?.name?.length && projectDetails.v
 
 const resetProjectDetails = () => {
   projectDetails.value = { name: '', organization: '' }
+}
+
+const nextPage = () => {
+  if (!projects.value?.incomplete_results) {
+    toast.error('Não existem mais projetos');
+    return;
+  }
+  data.value.page += 1
+  searchProjects(data.value.q)
+}
+
+const previousPage = () => {
+  if ((data.value.page - 1) <= 0) {
+    toast.error('Não possível voltar mais do que isso');
+    return;
+  }
+
+  data.value.page -= 1
+  searchProjects(data.value.q)
 }
 
 </script>

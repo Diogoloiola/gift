@@ -22,8 +22,8 @@
                 </option>
             </select>
             <div class="d-flex mt-3">
-                <RoundedButton text="Baixar zip" :fn="() => downloadFile(urls?.zipUrl ?? '')" />
-                <RoundedButton text="Baixar tar" :fn="() => downloadFile(urls?.zipUrl ?? '')" />
+                <RoundedButton text="Baixar zip" :fn="() => downloadFile(urls?.zipUrl ?? '')" :borderRadiusType="1"/>
+                <RoundedButton text="Baixar tar" :fn="() => downloadFile(urls?.zipUrl ?? '')" :borderRadiusType="2"/>
             </div>
         </div>
         <div v-else>
@@ -33,7 +33,7 @@
     </section>
     <section>
         <div class="p-absolute bottom-0">
-            <RoundedButton text="Voltar para pagina de resultados" :fn="() => backToProject()"/>
+            <RoundedButton text="Voltar para pagina de resultados" :fn="() => backToProject()" :borderRadiusType="0"/>
         </div>
     </section>
 
