@@ -16,7 +16,6 @@
   outline: none;
   border: 1px solid #9eb3c9;
   border-radius: 5px;
-  cursor: pointer;
 }
 </style>
 
