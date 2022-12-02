@@ -1,9 +1,5 @@
 <template>
-  <header class="header">
-    <nav>
-      <a href="">GitHub Repositories Finder Tool (GiFT)</a>
-    </nav>
-  </header>
+  <Header />
   <main class="container">
     <Form v-if="formIsVisible" @searchProjects='searchProjects' />
     <AppTable v-else :headers="['Nome projeto', 'Descrição']" :total_count="projects?.total_count" :back="backToForm" >
@@ -18,15 +14,6 @@
 </template>
 
 <style scoped>
-.header {
-  padding: 20px;
-  background-color: #343a40;
-}
-
-.header a {
-  color: #ffff;
-}
-
 .container {
   width: 98%;
   margin: auto;
@@ -41,6 +28,7 @@ import Form from "./Form.vue";
 import { Client } from "../api/github/client";
 import AppTable from "../components/AppTable.vue";
 import AppOverlay from "../components/AppOverlay.vue";
+import Header from "../components/Header.vue";
 
 const formIsVisible = ref(true);
 
